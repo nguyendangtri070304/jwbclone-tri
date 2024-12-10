@@ -5,15 +5,19 @@ import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.service.MovieService;
 import com.group11.moviebooking.util.MovieEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@RequestMapping("/movies")
 public class MovieCọntroller {
 
     private MovieService movieService;
@@ -22,7 +26,7 @@ public class MovieCọntroller {
         this.movieService = movieService;
     }
 
-    @GetMapping("api/movies")
+    @GetMapping("/movie")
     public List<MovieDTO> getMovies(@RequestParam(value = "title", required = false) String title,
                                     @RequestParam(value = "genre", required = false) String genre,
                                     @RequestParam(value = "director", required = false) String director,
@@ -44,23 +48,42 @@ public class MovieCọntroller {
         return movieService.getMovies(similar, at, total);
     }
 
-    @GetMapping("api/movies-movie_title")
-    public ModelAndView getMovies(@RequestParam(value = "title") String movie_title){
-        List<MovieDTO> movies = movieService.getMovies(movie_title);
-        ModelAndView modelAndView = new ModelAndView("/search-movie");
+    @GetMapping("/movie_title")
+    public ModelAndView getMovies(@RequestParam(value = "title") String title){
+        ArrayList<MovieDTO> movies = movieService.getMovies(title);
+        ModelAndView modelAndView = new ModelAndView("/search_movies");
         modelAndView.addObject("movies", movies);
         return modelAndView;
     }
 
-    @GetMapping("api/movies/latest")
+    @GetMapping("/latest")
     public ArrayList<MovieDTO> getLatestMovies(){
         ArrayList<MovieDTO> movies = movieService.getLatestMovies();
         return movies;
     }
 
-    @GetMapping("api/movies/rating")
+    @GetMapping("/rating")
     public ArrayList<MovieDTO> getTopMovieByRating(){
-        ArrayList<MovieDTO> movies = movieService.getLatestMovies();
+        ArrayList<MovieDTO> movies = movieService.getTopMovieByRating();
+        return movies;
+    }
+
+
+    @GetMapping("/adults")
+    public ArrayList<MovieDTO> getMoviesForAdults(){
+        ArrayList<MovieDTO> movies = movieService.getMoviesForAdults();
+        return movies;
+    }
+
+    @GetMapping("/kids")
+    public ArrayList<MovieDTO> getMoviesForKids(){
+        ArrayList<MovieDTO> movies = movieService.getMoviesForKids();
+        return movies;
+    }
+
+    @GetMapping("/selling")
+    public ArrayList<MovieDTO> getTopSellingMovies(){
+        ArrayList<MovieDTO> movies = movieService.getTopSellingMovies();
         return movies;
     }
 

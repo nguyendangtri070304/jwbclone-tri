@@ -23,7 +23,7 @@
 							aria-hidden="true"></span>
 							MyShowz </a></h1>
 				<!-- if logo is image enable this   
-							<a classx="navbar-brand" href="#/home">
+							<a class="navbar-brand" href="#/home">
 								<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
 							</a> -->
 				<button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
@@ -132,7 +132,6 @@
 				<div class="headerhny-title">
 					<h3 class="hny-title">Popular Movies</h3>
 				</div>
-
 				<div class="owl-four owl-carousel owl-theme">
 					<div class="item vhny-grid">
 						<div class="box16">
@@ -142,7 +141,9 @@
 								</figure>
 								<div class="box-content">
 									<h3 class="title">End Game</h3>
-									<h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min </span>
+									<h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
+
+										</span>
 
 										<span class="post fa fa-heart text-right"></span>
 									</h4>

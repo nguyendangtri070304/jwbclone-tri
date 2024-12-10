@@ -8,7 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import static com.group11.moviebooking.util.AddMovieRS.addMovieRSToList;
 
 @Repository
 public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
@@ -70,65 +73,47 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
             ResultSet rs = pre.executeQuery();
 
             while (rs.next()) {
-                MovieEntity movie = new MovieEntity();
-                movie.setMovie_id(rs.getInt("movie_id"));
-                movie.setMovie_title(rs.getString("movie_title"));
-                movie.setMovie_description(rs.getString("movie_description"));
-                movie.setMovie_rating(rs.getFloat("movie_rating"));
-                movie.setMovie_duration(rs.getInt("movie_duration"));
-                movie.setMovie_trailer_url(rs.getString("movie_trailer_url"));
-                movie.setMovie_realease_date(rs.getString("movie_release_date"));
-                movie.setMovie_created_at(rs.getString("movie_created_at"));
-                movie.setMovie_main_actor(rs.getString("movie_main_actor"));
-                movie.setMovie_director(rs.getString("movie_director"));
-                movie.setMovie_studio(rs.getString("movie_studio"));
-                movie.setMovie_country(rs.getString("movie_country"));
-                movie.setMovie_genre(rs.getString("movie_genre"));
-                movie.setMovie_for_age(rs.getInt("movie_for_age"));
-                movie.setMovie_poster_url(rs.getString("movie_poster_url"));
-
-                movies.add(movie);
+                addMovieRSToList(rs, movies);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         } finally {
             this.releaseConnection(); // Trả lại kết nối
         }
         return movies;
     }
 
-    public List<MovieEntity> getMovies(String movie_title) {
-        List<MovieEntity> movies = new ArrayList<>();
+    public ArrayList<MovieEntity> getMovies(String movie_title) {
+        ArrayList<MovieEntity> movies = new ArrayList<>();
 
         String sql = "SELECT * FROM tblmovies WHERE movie_title LIKE ?";
 
         try {
             PreparedStatement pre = this.con.prepareStatement(sql.toString());
             pre.setString(1, "%" + movie_title + "%");
+
             ResultSet rs = pre.executeQuery();
 
             while (rs.next()) {
-                MovieEntity movie = new MovieEntity();
-                movie.setMovie_id(rs.getInt("movie_id"));
-                movie.setMovie_title(rs.getString("movie_title"));
-                movie.setMovie_description(rs.getString("movie_description"));
-                movie.setMovie_rating(rs.getFloat("movie_rating"));
-                movie.setMovie_duration(rs.getInt("movie_duration"));
-                movie.setMovie_trailer_url(rs.getString("movie_trailer_url"));
-                movie.setMovie_realease_date(rs.getString("movie_release_date"));
-                movie.setMovie_created_at(rs.getString("movie_created_at"));
-                movie.setMovie_main_actor(rs.getString("movie_main_actor"));
-                movie.setMovie_director(rs.getString("movie_director"));
-                movie.setMovie_studio(rs.getString("movie_studio"));
-                movie.setMovie_country(rs.getString("movie_country"));
-                movie.setMovie_genre(rs.getString("movie_genre"));
-                movie.setMovie_for_age(rs.getInt("movie_for_age"));
-                movie.setMovie_poster_url(rs.getString("movie_poster_url"));
-
-                movies.add(movie);
+                addMovieRSToList(rs, movies);
             }
+            return movies;
         } catch (SQLException e) {
             e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         } finally {
             this.releaseConnection(); // Trả lại kết nối
         }
@@ -149,27 +134,18 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
             ResultSet rs = pre.executeQuery();
 
             while (rs.next()) {
-                MovieEntity movie = new MovieEntity();
-                movie.setMovie_id(rs.getInt("movie_id"));
-                movie.setMovie_title(rs.getString("movie_title"));
-                movie.setMovie_description(rs.getString("movie_description"));
-                movie.setMovie_rating(rs.getFloat("movie_rating"));
-                movie.setMovie_duration(rs.getInt("movie_duration"));
-                movie.setMovie_trailer_url(rs.getString("movie_trailer_url"));
-                movie.setMovie_realease_date(rs.getString("movie_release_date"));
-                movie.setMovie_created_at(rs.getString("movie_created_at"));
-                movie.setMovie_main_actor(rs.getString("movie_main_actor"));
-                movie.setMovie_director(rs.getString("movie_director"));
-                movie.setMovie_studio(rs.getString("movie_studio"));
-                movie.setMovie_country(rs.getString("movie_country"));
-                movie.setMovie_genre(rs.getString("movie_genre"));
-                movie.setMovie_for_age(rs.getInt("movie_for_age"));
-                movie.setMovie_poster_url(rs.getString("movie_poster_url"));
-
-                movies.add(movie);
+                addMovieRSToList(rs, movies);
             }
+            return movies;
         } catch (SQLException e) {
             e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         } finally {
             this.releaseConnection(); // Trả lại kết nối
         }
@@ -190,37 +166,180 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
             ResultSet rs = pre.executeQuery();
 
             while (rs.next()) {
-                MovieEntity movie = new MovieEntity();
-                movie.setMovie_id(rs.getInt("movie_id"));
-                movie.setMovie_title(rs.getString("movie_title"));
-                movie.setMovie_description(rs.getString("movie_description"));
-                movie.setMovie_rating(rs.getFloat("movie_rating"));
-                movie.setMovie_duration(rs.getInt("movie_duration"));
-                movie.setMovie_trailer_url(rs.getString("movie_trailer_url"));
-                movie.setMovie_realease_date(rs.getString("movie_release_date"));
-                movie.setMovie_created_at(rs.getString("movie_created_at"));
-                movie.setMovie_main_actor(rs.getString("movie_main_actor"));
-                movie.setMovie_director(rs.getString("movie_director"));
-                movie.setMovie_studio(rs.getString("movie_studio"));
-                movie.setMovie_country(rs.getString("movie_country"));
-                movie.setMovie_genre(rs.getString("movie_genre"));
-                movie.setMovie_for_age(rs.getInt("movie_for_age"));
-                movie.setMovie_poster_url(rs.getString("movie_poster_url"));
-
-                movies.add(movie);
+                addMovieRSToList(rs, movies);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
         } finally {
             this.releaseConnection(); // Trả lại kết nối
         }
         return movies;
     }
 
-    public ArrayList<MovieEntity> getAdultMovies(){
-
+    public ArrayList<MovieEntity> getMoviesForAdults() {
         ArrayList<MovieEntity> movies = new ArrayList<>();
 
+        StringBuilder sql =  new StringBuilder();
+        sql.append("SELECT * FROM tblmovies ");
+        sql.append("WHERE movie_for_age >= 18 ");
+        sql.append("ORDER BY movie_rating DESC ");
+
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+
+            ResultSet rs = pre.executeQuery();
+
+            while (rs.next()) {
+                addMovieRSToList(rs, movies);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } finally {
+            this.releaseConnection(); // Trả lại kết nối
+        }
         return movies;
+    }
+
+    public ArrayList<MovieEntity> getMoviesForKids() {
+        ArrayList<MovieEntity> movies = new ArrayList<>();
+
+        StringBuilder sql =  new StringBuilder();
+        sql.append("SELECT * FROM tblmovies ");
+        sql.append("WHERE movie_for_age <= 12 ");
+        sql.append("ORDER BY movie_rating DESC ");
+
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+
+            ResultSet rs = pre.executeQuery();
+
+            while (rs.next()) {
+                addMovieRSToList(rs, movies);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        } finally {
+            this.releaseConnection(); // Trả lại kết nối
+        }
+        return movies;
+    }
+
+    public ResultSet getTopSellingMovies() {
+        ResultSet rs = null;
+
+        StringBuilder sql =  new StringBuilder();
+
+        sql.append("SELECT" +
+                "    m.movie_title, movie_poster_url, " +
+                "    COUNT(bs.booking_seat_id) AS total_tickets_sold," +
+                "    st.ticket_price," +
+                "    COUNT(bs.booking_seat_id) * st.ticket_price AS revenue," +
+                "    m.movie_rating " +
+                "FROM " +
+                "    tblmovies m " +
+                "JOIN " +
+                "    tblshowtimes st ON m.movie_id = st.movie_id " +
+                "JOIN " +
+                "    tblbookings b ON st.showtime_id = b.showtime_id " +
+                "JOIN " +
+                "    tblbooking_seats bs ON b.booking_id = bs.booking_id " +
+                "GROUP BY " +
+                "    m.movie_title, m.movie_rating, st.ticket_price " +
+                "ORDER BY " +
+                "    total_tickets_sold DESC, m.movie_rating DESC " +
+                "LIMIT 5;");
+
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+
+            rs = pre.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        return rs;
+    }
+
+    public HashMap<Object,Object> getTicketsSoldAndRevenue() {
+
+        HashMap<Object, Object> resultMap = new HashMap<>();
+        StringBuilder sql =  new StringBuilder();
+        sql.append(" SELECT COUNT(booking_seat_id) AS total_tickets_sold FROM tblbooking_seats;" +
+                "SELECT SUM(total) AS total_revenue" +
+                "    FROM (" +
+                "        SELECT st.ticket_price * COUNT(bs.booking_seat_id) AS total" +
+                "        FROM tblshowtimes st" +
+                "        JOIN tblbookings b ON st.showtime_id = b.showtime_id" +
+                "        JOIN tblbooking_seats bs ON b.booking_id = bs.booking_id" +
+                "        GROUP BY st.showtime_id" +
+                "    ) AS revenue_per_showtime;");
+
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+
+            boolean  hasMoreResults = pre.execute();
+
+            if(hasMoreResults) {
+                ResultSet s1 = pre.getResultSet();
+                try {
+                    if(s1.next()) {
+                        resultMap.put("total_tickets_sold", s1.getInt("total_tickets_sold"));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if(pre.getMoreResults()){
+                ResultSet s2 = pre.getResultSet();
+
+                try {
+                    if(s2.next()) {
+                        resultMap.put("total_revenue", s2.getInt("total_revenue"));
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            try {
+                this.con.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+        }
+        return resultMap;
     }
 }

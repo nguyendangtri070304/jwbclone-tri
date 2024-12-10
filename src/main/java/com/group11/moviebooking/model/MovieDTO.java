@@ -16,6 +16,9 @@ public class MovieDTO {
     private String movie_genre;
     private int movie_for_age;
     private String movie_poster_url;
+    private int total_tickets_sold;
+    private float ticket_price;
+    private float revenue;
 
     // Getter and Setter for movie_id
     public int getMovie_id() {
@@ -150,5 +153,29 @@ public class MovieDTO {
 
     public void setMovie_poster_url(String movie_poster_url) {
         this.movie_poster_url = movie_poster_url;
+    }
+
+    public int getTotal_tickets_sold() {
+        return total_tickets_sold;
+    }
+
+    public void setTotal_tickets_sold(int total_tickets_sold) {
+        this.total_tickets_sold = total_tickets_sold;
+    }
+
+    public float getTicket_price() {
+        return ticket_price;
+    }
+
+    public void setTicket_price(float ticket_price) {
+        this.ticket_price = ticket_price;
+    }
+
+    public float getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(float revenue) {
+        this.revenue = revenue;
     }
 }

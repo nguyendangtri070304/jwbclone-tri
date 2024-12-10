@@ -5,6 +5,7 @@ import com.group11.moviebooking.util.MovieEntity;
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface MovieRepository {
@@ -13,5 +14,8 @@ public interface MovieRepository {
     List<MovieEntity> getMovies(String movie_title);
     ArrayList<MovieEntity> getLatestMovies();
     ArrayList<MovieEntity> getTopMovieByRating();
-    ArrayList<MovieEntity> getAdultMovies();
+    ArrayList<MovieEntity> getMoviesForAdults();
+    ArrayList<MovieEntity> getMoviesForKids();
+    ResultSet getTopSellingMovies();
+    HashMap<Object, Object> getTicketsSoldAndRevenue();
 }

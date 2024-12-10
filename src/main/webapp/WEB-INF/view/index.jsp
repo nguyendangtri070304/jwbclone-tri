@@ -61,14 +61,13 @@
                             </ul>
 
                             <!--/search-right-->
-                            <!--/search-right-->
                             <div class="search-right">
                                 <a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search
                                     <span class="fa fa-search ml-3" aria-hidden="true"></span></a>
                                 <!-- search popup -->
                                 <div id="search" class="pop-overlay">
                                     <div class="popup">
-                                        <form action="/api/movies-movie_title" method="GET" class="search-box" id="btnSearchMovie">
+                                        <form action="/movies/movie_title" method="GET" class="search-box">
                                             <input type="search" placeholder="Search your Keyword" name="title"
                                                 required="required" autofocus="">
                                             <button type="submit" class="btn"><span class="fa fa-search"

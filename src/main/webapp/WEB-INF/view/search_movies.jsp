@@ -7,10 +7,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Movies</title>
-	<link rel="stylesheet" href="assets/css/style-starter.css">
+	<link rel="stylesheet" href="/assets/css/style-starter.css">
 	<link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
 		rel="stylesheet">
-
+	
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 				<h1><a class="navbar-brand" href="/home"><span class="fa fa-play icon-log"
 							aria-hidden="true"></span>
 							MyShowz </a></h1>
-				<!-- if logo is image enable this
+				<!-- if logo is image enable this   
 							<a class="navbar-brand" href="#/home">
 								<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
 							</a> -->
@@ -124,43 +124,52 @@
 			</div>
 		</nav>
 	</div>
-	<!--/movies -->
-	<!--grids-sec1-->
+
 	<section class="w3l-grids">
 		<div class="grids-main py-4">
 			<div class="container py-lg-4">
 				<div class="headerhny-title">
-					<h3 class="hny-title">Results for Searching</h3>
+					<h3 class="hny-title">Search Results</h3>
 				</div>
 
 				<c:if test="${empty movies}">
 					<p>No movies found matching your search.</p>
 				</c:if>
 
-				<div class="owl-four owl-carousel owl-theme">
-					<!-- Lặp qua danh sách movie -->
-					<c:forEach var="movie" items="${movies}">
-						<div class="box16">
-						<a href="#">
-							<figure>
-								<img class="img-fluid" src="assets/images/banner1.jpg" alt="">
-							</figure>
-							<div class="box-content">
-								<h3 class="title">${movie.movie_title}</h3>
-								<h4> <span class="post"><span class="fa fa-clock-o"> </span> ${movie.movie_duration} </span>
-
-									<span class="post fa fa-heart text-right"></span>
-								</h4>
+				<c:if test="${not empty movies}">
+					<div class="row">
+						<c:forEach var="movie" items="${movies}" varStatus="status">
+							<div class="col-md-6 mb-4">
+								<div class="box16">
+									<a href="${movie.movie_trailer_url}">
+					x					<figure>
+											<!-- Hiển thị ảnh poster của bộ phim -->
+											<img class="img-fluid" src="${movie.movie_poster_url}" alt="${movie.movie_title}">
+										</figure>
+										<div class="box-content">
+											<!-- Hiển thị tiêu đề -->
+											<h3 class="title">${movie.movie_title}</h3>
+											<!-- Hiển thị thời lượng và đánh giá -->
+											<h4>
+                                            <span class="post">
+                                                <span class="fa fa-clock-o"> </span>
+                                                ${movie.movie_duration} min
+                                            </span>
+												<span class="post fa fa-heart text-right">
+                                                ${movie.movie_rating} / 10
+                                            </span>
+											</h4>
+										</div>
+										<span class="fa fa-play video-icon" aria-hidden="true"></span>
+									</a>
+								</div>
 							</div>
-							<span class="fa fa-play video-icon" aria-hidden="true"></span>
-						</a>
-						</div>
-					</c:forEach>
-				</div>
+						</c:forEach>
+					</div>
+				</c:if>
 			</div>
 		</div>
 	</section>
-
 
 	<section class="w3l-grids">
 		<div class="grids-main py-4">
@@ -282,6 +291,132 @@
 			</div>
 		</div>
 	</section>
+
+	<!-- footer-66 -->
+	<footer class="w3l-footer">
+		<section class="footer-inner-main">
+			<div class="footer-hny-grids py-5">
+				<div class="container py-lg-4">
+					<div class="text-txt">
+						<div class="right-side">
+							<div class="row footer-about">
+								<div class="col-md-3 col-6 footer-img mb-lg-0 mb-4">
+									<a href="/movies"><img class="img-fluid" src="assets/images/banner1.jpg"
+														   alt=""></a>
+								</div>
+								<div class="col-md-3 col-6 footer-img mb-lg-0 mb-4">
+									<a href="/movies"><img class="img-fluid" src="assets/images/banner2.jpg"
+														   alt=""></a>
+								</div>
+								<div class="col-md-3 col-6 footer-img mb-lg-0 mb-4">
+									<a href="/movies"><img class="img-fluid" src="assets/images/banner3.jpg"
+														   alt=""></a>
+								</div>
+								<div class="col-md-3 col-6 footer-img mb-lg-0 mb-4">
+									<a href="/movies"><img class="img-fluid" src="assets/images/banner4.jpg"
+														   alt=""></a>
+								</div>
+							</div>
+							<div class="row footer-links">
+
+
+								<div class="col-md-3 col-sm-6 sub-two-right mt-5">
+									<h6>Movies</h6>
+									<ul>
+										<li><a href="#">Movies</a></li>
+										<li><a href="#">Videos</a></li>
+										<li><a href="#">English Movies</a></li>
+										<li><a href="#">Tailor</a></li>
+										<li><a href="#">Upcoming Movies</a></li>
+										<li><a href="/Contact_Us">Contact Us</a></li>
+									</ul>
+								</div>
+								<div class="col-md-3 col-sm-6 sub-two-right mt-5">
+									<h6>Information</h6>
+									<ul>
+										<li><a href="/home">Home</a> </li>
+										<li><a href="/about">About</a> </li>
+										<li><a href="#">Tv Series</a> </li>
+										<li><a href="/dashboard">DashBoard</a> </li>
+										<li><a href="/sign">Login</a></li>
+										<li><a href="/Contact_Us">Contact</a></li>
+									</ul>
+								</div>
+								<div class="col-md-3 col-sm-6 sub-two-right mt-5">
+									<h6>Locations</h6>
+									<ul>
+										<li><a href="/movies">Asia</a></li>
+										<li><a href="/movies">France</a></li>
+										<li><a href="/movies">Taiwan</a></li>
+										<li><a href="/movies">United States</a></li>
+										<li><a href="/movies">Korea</a></li>
+										<li><a href="/movies">United Kingdom</a></li>
+									</ul>
+								</div>
+								<div class="col-md-3 col-sm-6 sub-two-right mt-5">
+									<h6>Newsletter</h6>
+									<form action="#" class="subscribe mb-3" method="post">
+										<input type="email" name="email" placeholder="Your Email Address" required="">
+										<button><span class="fa fa-envelope-o"></span></button>
+									</form>
+									<p>Enter your email and receive the latest news, updates and special offers from us.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+			<div class="below-section">
+				<div class="container">
+					<div class="copyright-footer">
+						<div class="columns text-lg-left">
+							<p>&copy; 2024 MyShowz. All rights reserved</p>
+						</div>
+
+						<ul class="social text-lg-right">
+							<li><a href="#facebook"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+							</li>
+							<li><a href="#linkedin"><span class="fa fa-linkedin" aria-hidden="true"></span></a>
+							</li>
+							<li><a href="#twitter"><span class="fa fa-twitter" aria-hidden="true"></span></a>
+							</li>
+							<li><a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- move top -->
+			<button onclick="topFunction()" id="movetop" title="Go to top">
+				<span class="fa fa-arrow-up" aria-hidden="true"></span>
+			</button>
+			<script>
+				// When the user scrolls down 20px from the top of the document, show the button
+				window.onscroll = function () {
+					scrollFunction()
+				};
+
+				function scrollFunction() {
+					if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+						document.getElementById("movetop").style.display = "block";
+					} else {
+						document.getElementById("movetop").style.display = "none";
+					}
+				}
+
+				// When the user clicks on the button, scroll to the top of the document
+				function topFunction() {
+					document.body.scrollTop = 0;
+					document.documentElement.scrollTop = 0;
+				}
+			</script>
+			<!-- /move top -->
+
+		</section>
+	</footer>
 </body>
 
 </html>

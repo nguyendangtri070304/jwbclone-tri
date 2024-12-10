@@ -32,7 +32,7 @@ public class UserController {
         return "about";
     }
 
-    @RequestMapping("/dashboard")
+    @RequestMapping("/dashbpard")
     public String getDashBoard() {
         return "dashboard";
     }
