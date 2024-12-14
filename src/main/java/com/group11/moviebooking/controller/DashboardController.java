@@ -2,7 +2,7 @@ package com.group11.moviebooking.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.group11.moviebooking.Mapper.MappingDTOtoJSON;
+import com.group11.moviebooking.convert.MappingDTOtoJSON;
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.model.RevenueDTO;
 import com.group11.moviebooking.service.MovieService;
@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dashboard")
 public class DashboardController {
 
     private MovieService movieService;
@@ -31,7 +30,7 @@ public class DashboardController {
         this.revenueService = revenueService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/dashboard")
     public ModelAndView showDashboard(){
         ModelAndView modelAndView = new ModelAndView("/dashboard");
 
@@ -51,7 +50,7 @@ public class DashboardController {
         List<MovieDTO> topSelling = getTopSellingMovies();
         try {
             ObjectMapper mapper = new ObjectMapper();
-            String chartJson = mapper.writeValueAsString(chart); // Chuyển đổi thành JSON
+            String chartJson = mapper.writeValueAsString(topSelling); // Chuyển đổi thành JSON
             modelAndView.addObject("topselling", topSelling);
         } catch (Exception e) {
             e.printStackTrace();

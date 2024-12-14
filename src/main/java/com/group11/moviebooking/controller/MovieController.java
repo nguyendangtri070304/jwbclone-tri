@@ -4,29 +4,25 @@ package com.group11.moviebooking.controller;
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.service.MovieService;
 import com.group11.moviebooking.util.MovieEntity;
-import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
-public class MovieCọntroller {
+public class MovieController {
 
+    @Autowired
     private MovieService movieService;
 
-    public MovieCọntroller(MovieService movieService) {
+    public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
 
-    @GetMapping("/movie")
+    //@GetMapping("/movie")
     public List<MovieDTO> getMovies(@RequestParam(value = "title", required = false) String title,
                                     @RequestParam(value = "genre", required = false) String genre,
                                     @RequestParam(value = "director", required = false) String director,
@@ -85,6 +81,24 @@ public class MovieCọntroller {
     public ArrayList<MovieDTO> getTopSellingMovies(){
         ArrayList<MovieDTO> movies = movieService.getTopSellingMovies();
         return movies;
+    }
+
+    @GetMapping()
+    public ModelAndView showMovies(){
+        ModelAndView modelAndView = new ModelAndView("/movies");
+        List<MovieDTO> latestMovies = getLatestMovies();
+        modelAndView.addObject("latestMovies", latestMovies);
+
+        List<MovieDTO> adultMovies = getMoviesForAdults();
+        modelAndView.addObject("adultMovies", adultMovies);
+
+        List<MovieDTO> kidsMovies = getMoviesForKids();
+        modelAndView.addObject("kidMovies", kidsMovies);
+
+        List<MovieDTO> ratingMovies = getTopMovieByRating();
+        modelAndView.addObject("ratingMovies", ratingMovies);
+
+        return modelAndView;
     }
 
 }

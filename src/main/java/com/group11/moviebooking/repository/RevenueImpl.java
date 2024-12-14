@@ -27,10 +27,23 @@ public class RevenueImpl  extends BasicImpl implements Revenue {
         // Chuyển đổi ngày thành String (ISO format yyyy-MM-dd)
         String startDate = sevenDaysAgo.toString();
         String endDate = today.toString();
-        String sql = "SELECT show_date, SUM(ticket_price) AS total_revenue " +
-                "FROM tblshowtimes " +
-                "WHERE show_date BETWEEN ? AND ? " +
-                "GROUP BY show_date ORDER BY show_date ASC;";
+//        String sql = "SELECT show_date, SUM(ticket_price) AS total_revenue " +
+//                "FROM tblshowtimes " +
+//                "WHERE show_date BETWEEN ? AND ? " +
+//                "GROUP BY show_date ORDER BY show_date ASC;";
+
+        String sql = "SELECT " +
+                "    DATE(booking_created_at) AS show_date, " +
+                "    SUM(total_price) AS total_revenue " +
+                "FROM " +
+                "    tblbookings " +
+                "WHERE " +
+                "    booking_created_at BETWEEN ? AND ? " +
+                "GROUP BY " +
+                "    DATE(booking_created_at) " +
+                "ORDER BY " +
+                "    show_date ASC;";
+
 
         // Tạo PreparedStatement và thực thi truy vấn
         PreparedStatement statement = null;
