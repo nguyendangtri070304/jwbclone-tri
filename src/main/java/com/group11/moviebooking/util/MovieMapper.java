@@ -1,5 +1,6 @@
 package com.group11.moviebooking.util;
 
+import com.group11.moviebooking.entity.MovieEntity;
 import com.group11.moviebooking.model.MovieDTO;
 
 import java.sql.ResultSet;

@@ -7,6 +7,9 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Ticket Booking</title>
+      <!-- Logo -->
+      <link href="assets/images/logo.png" rel="icon" />
+      <link href="assets/images/logo.png" rel="apple-touch-icon" />
       <link rel="stylesheet" type="text/css" href="assets/css/style-starter.css">
       <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
       <link rel="stylesheet" type="text/css" href="assets/css/progress.css">

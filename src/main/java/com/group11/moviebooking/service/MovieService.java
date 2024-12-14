@@ -1,9 +1,9 @@
 package com.group11.moviebooking.service;
 
 
+import com.group11.moviebooking.entity.MovieEntity;
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.repository.MovieRepositoryImpl;
-import com.group11.moviebooking.util.MovieEntity;
 import com.group11.moviebooking.util.MovieMapper;
 import org.springframework.stereotype.Service;
 

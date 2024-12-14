@@ -6,7 +6,10 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title>Document</title>
+            <title>MyShowz</title>
+            <!-- Logo -->
+            <link href="assets/images/logo.png" rel="icon" />
+            <link href="assets/images/logo.png" rel="apple-touch-icon" />
             <!-- Latest compiled and minified CSS -->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
             <!-- Latest compiled JavaScript -->

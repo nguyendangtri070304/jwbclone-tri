@@ -8,7 +8,9 @@
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 			<title>About</title>
-
+			<!-- Logo -->
+			<link href="assets/images/logo.png" rel="icon" />
+			<link href="assets/images/logo.png" rel="apple-touch-icon" />
 			<link rel="stylesheet" type="text/css" href="assets/css/swiper.min.css">
 
 			<link rel="stylesheet" type="text/css" href="assets/css/style-starter.css">
