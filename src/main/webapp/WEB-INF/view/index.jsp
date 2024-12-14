@@ -6,10 +6,7 @@
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <title>MyShowz</title>
-            <!-- Logo -->
-            <link href="assets/images/logo.png" rel="icon" />
-            <link href="assets/images/logo.png" rel="apple-touch-icon" />
+            <title>Document</title>
             <!-- Latest compiled and minified CSS -->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
             <!-- Latest compiled JavaScript -->
@@ -111,98 +108,28 @@
             <section class="w3l-main-slider position-relative" id="home">
                 <div class="companies20-content">
                     <div class="owl-one owl-carousel owl-theme">
-                        <div class="item">
-                            <li>
-                                <div class="slider-info banner-view bg bg2">
-                                    <div class="banner-info">
-                                        <h3>Latest Movie Trailers</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span
-                                                class="over-para">
-                                                Consequuntur hic odio
-                                                voluptatem tenetur consequatur.</span></p>
-                                        <a href="#small-dialog1" class="popup-with-zoom-anim play-view1">
+                        <c:forEach var="movie" items="${latestMovies}">
+                            <div class="item">
+                                <li>
+                                    <div class="slider-info banner-view bg bg2">
+                                        <div class="banner-info">
+                                            <h3>${movie.movie_title}</h3>
+                                            <p>${movie.movie_description}</p>
+                                            <a href="#small-dialog" class="popup-with-zoom-anim play-view1">
                                             <span class="video-play-icon">
                                                 <span class="fa fa-play"></span>
                                             </span>
-                                            <h6>Watch Trailer</h6>
-                                        </a>
-                                        <div id="small-dialog1" class="zoom-anim-dialog mfp-hide">
-                                            <iframe src="https://player.vimeo.com/video/358205676"
-                                                allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                                                <h6>Watch Trailer</h6>
+                                            </a>
+                                            <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                                                <iframe src="${movie.movie_trailer_url}"
+                                                        allow="autoplay; fullscreen" allowfullscreen=""></iframe>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        </div>
-                        <div class="item">
-                            <li>
-                                <div class="slider-info  banner-view banner-top1 bg bg2">
-                                    <div class="banner-info">
-                                        <h3>Latest Online Movies</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span
-                                                class="over-para">
-                                                Consequuntur hic odio
-                                                voluptatem tenetur consequatur.</span></p>
-                                        <a href="#small-dialog2" class="popup-with-zoom-anim play-view1">
-                                            <span class="video-play-icon">
-                                                <span class="fa fa-play"></span>
-                                            </span>
-                                            <h6>Watch Trailer</h6>
-                                        </a>
-                                        <div id="small-dialog2" class="zoom-anim-dialog mfp-hide">
-                                            <iframe src="https://player.vimeo.com/video/395376850"
-                                                allow="autoplay; fullscreen" allowfullscreen=""></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                        <div class="item">
-                            <li>
-                                <div class="slider-info banner-view banner-top2 bg bg2">
-                                    <div class="banner-info">
-                                        <h3>Latest Movie Trailers</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span
-                                                class="over-para">
-                                                Consequuntur hic odio
-                                                voluptatem tenetur consequatur.</span></p>
-                                        <a href="#small-dialog3" class="popup-with-zoom-anim play-view1">
-                                            <span class="video-play-icon">
-                                                <span class="fa fa-play"></span>
-                                            </span>
-                                            <h6>Watch Trailer</h6>
-                                        </a>
-                                        <div id="small-dialog3" class="zoom-anim-dialog mfp-hide">
-                                            <iframe src="https://player.vimeo.com/video/389969665"
-                                                allow="autoplay; fullscreen" allowfullscreen=""></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
-                        <div class="item">
-                            <li>
-                                <div class="slider-info banner-view banner-top3 bg bg2">
-                                    <div class="banner-info">
-                                        <h3>Latest Online Movies</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<span
-                                                class="over-para">
-                                                Consequuntur hic odio
-                                                voluptatem tenetur consequatur.</span></p>
-                                        <a href="#small-dialog4" class="popup-with-zoom-anim play-view1">
-                                            <span class="video-play-icon">
-                                                <span class="fa fa-play"></span>
-                                            </span>
-                                            <h6>Watch Trailer</h6>
-                                        </a>
-                                        <div id="small-dialog4" class="zoom-anim-dialog mfp-hide">
-                                            <iframe src="https://player.vimeo.com/video/323491174"
-                                                allow="autoplay; fullscreen" allowfullscreen=""></iframe>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </div>
+                                </li>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </section>
@@ -222,82 +149,27 @@
                             </div>
                         </div>
                         <div class="w3l-populohny-grids">
-                            <div class="item vhny-grid">
-                                <div class="box16">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/wednesday.jpeg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-                                            <h3 class="title">A Wednesday</h3>
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
+                            <c:forEach var="movie" items="${popularMovies}" begin="0" end="3">
+                                <div class="item vhny-grid">
+                                    <div class="box16">
+                                        <a href="/movies">
+                                            <figure>
+                                                <img class="img-fluid" src="${movie.movie_poster_url}" alt="">
+                                            </figure>
+                                            <div class="box-content">
+                                                <h3 class="title">${movie.movie_title}</h3>
+                                                <h4> <span class="post"><span class="fa fa-clock-o"> </span>
 
                                                 </span>
 
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
+                                                    <span class="post fa fa-heart text-right"></span>
+                                                </h4>
+                                            </div>
+                                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/commando2.jpeg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-                                            <h3 class="title">Commando-3</h3>
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/gujju2.jpeg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-                                            <h3 class="title">Gujjubhai Most Wanted</h3>
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/avtar-2.jpeg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-                                            <h3 class="title">Avatar</h3>
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 1 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -318,151 +190,31 @@
                             </div>
                         </div>
                         <div class="owl-three owl-carousel owl-theme">
-                            <div class="item vhny-grid">
-                                <div class="box16 mb-0">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/n1.jpg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr 4min
+                            <c:forEach items="${topRatingMovies}" var="movie">
+                                <div class="item vhny-grid">
+                                    <div class="box16 mb-0">
+                                        <a href="">
+                                            <figure>
+                                                <img class="img-fluid" src="${movie.movie_poster_url}" alt="">
+                                            </figure>
+                                            <div class="box-content">
+                                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> ${movie.movie_duration} min
 
                                                 </span>
 
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
+                                                    <span class="post fa fa-heart text-right">${movie.movie_rating} / 10</span>
+                                                </h4>
+                                            </div>
+                                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
+                                        </a>
+                                    </div>
+                                    <h3> <a class="title-gd" href="">${movie.movie_title}</a></h3>
+                                    <p>${movie.movie_description}</p>
+                                    <div class="button-center text-center mt-4">
+                                        <a href="${movie.movie_trailer_url}" class="btn watch-button">Watch now</a>
+                                    </div>
                                 </div>
-                                <h3> <a class="title-gd" href="/movies">No Time to Die</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                <div class="button-center text-center mt-4">
-                                    <a href="/movies" class="btn watch-button">Watch now</a>
-                                </div>
-
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16 mb-0">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/n2.jpg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <h3> <a class="title-gd" href="/movies">Mulan</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                <div class="button-center text-center mt-4">
-                                    <a href="/movies" class="btn watch-button">Watch now</a>
-                                </div>
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16 mb-0">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/n3.jpg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <h3> <a class="title-gd" href="/movies">Free Guy</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                <div class="button-center text-center mt-4">
-                                    <a href="/movies" class="btn watch-button">Watch now</a>
-                                </div>
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16 mb-0">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/n4.jpg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <h3> <a class="title-gd" href="/movies">My Spy</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                <div class="button-center text-center mt-4">
-                                    <a href="/movies" class="btn watch-button">Watch now</a>
-                                </div>
-
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16 mb-0">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/n5.jpg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <h3> <a class="title-gd" href="/movies">Scoob</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                <div class="button-center text-center mt-4">
-                                    <a href="/movies" class="btn watch-button">Watch now</a>
-                                </div>
-                            </div>
-                            <div class="item vhny-grid">
-                                <div class="box16 mb-0">
-                                    <a href="/movies">
-                                        <figure>
-                                            <img class="img-fluid" src="assets/images/n6.jpg" alt="">
-                                        </figure>
-                                        <div class="box-content">
-
-                                            <h4> <span class="post"><span class="fa fa-clock-o"> </span> 2 Hr 4min
-
-                                                </span>
-
-                                                <span class="post fa fa-heart text-right"></span>
-                                            </h4>
-                                        </div>
-                                        <span class="fa fa-play video-icon" aria-hidden="true"></span>
-                                    </a>
-                                </div>
-                                <h3> <a class="title-gd" href="/movies">Downhill</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
-                                <div class="button-center text-center mt-4">
-                                    <a href="/movies" class="btn watch-button">Watch now</a>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
 
