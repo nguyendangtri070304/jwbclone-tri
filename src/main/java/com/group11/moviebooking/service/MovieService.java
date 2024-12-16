@@ -3,8 +3,8 @@ package com.group11.moviebooking.service;
 
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.repository.MovieRepositoryImpl;
-import com.group11.moviebooking.util.MovieEntity;
-import com.group11.moviebooking.util.MovieMapper;
+import com.group11.moviebooking.entity.MovieEntity;
+import com.group11.moviebooking.convert.MovieMapper;
 import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
@@ -94,8 +94,16 @@ public class MovieService {
         try {
             while(rs.next()) {
                 MovieDTO movie = new MovieDTO();
+                movie.setMovie_id(rs.getInt("movie_id"));
                 movie.setMovie_title(rs.getString("movie_title"));
                 movie.setMovie_poster_url(rs.getString("movie_poster_url"));
+                movie.setMovie_release_date(rs.getString("movie_release_date"));
+                movie.setMovie_description(rs.getString("movie_description"));
+                movie.setMovie_director(rs.getString("movie_director"));
+                movie.setMovie_duration(rs.getInt("movie_duration"));
+                movie.setMovie_studio(rs.getString("movie_studio"));
+                movie.setMovie_rating(rs.getFloat("movie_rating"));
+                movie.setMovie_main_actor(rs.getString("movie_main_actor"));
                 movie.setTotal_tickets_sold(rs.getInt("total_tickets_sold"));
                 movie.setTicket_price(rs.getFloat("ticket_price"));
                 movie.setRevenue(rs.getFloat("revenue"));

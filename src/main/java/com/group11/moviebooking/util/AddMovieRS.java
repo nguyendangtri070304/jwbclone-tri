@@ -1,5 +1,7 @@
 package com.group11.moviebooking.util;
 
+import com.group11.moviebooking.entity.MovieEntity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;

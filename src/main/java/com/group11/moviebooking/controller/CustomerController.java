@@ -1,7 +1,14 @@
 package com.group11.moviebooking.controller;
 
+
+import com.group11.moviebooking.convert.MappingDTOtoJSON;
+import com.group11.moviebooking.service.AdminService;
+import com.group11.moviebooking.service.MovieService;
+import com.group11.moviebooking.service.RevenueService;
+import com.group11.moviebooking.entity.AdminEntity;
+import com.group11.moviebooking.entity.CustomerEntity;
 import com.group11.moviebooking.service.CustomerService;
-import com.group11.moviebooking.util.CustomerEntity;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,12 +18,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+//@RestController
 @Controller
 @RequestMapping("/")
 public class CustomerController {
+    private MovieService movieService;
+    private RevenueService revenueService;
+    private MappingDTOtoJSON map;
+    private final AdminService adminService;
     private final CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(AdminService adminService, CustomerService customerService) {
+        this.adminService = adminService;
         this.customerService = customerService;
     }
 
@@ -25,10 +38,7 @@ public class CustomerController {
         return "index";
     }
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String getIndexPage(Model model) {
-        return "index";
-    }
+
 
     @RequestMapping(value = "/sign", method = RequestMethod.GET)
     public String getSign(Model model1) {
@@ -42,10 +52,7 @@ public class CustomerController {
         return "about";
     }
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String getDashBoard() {
-        return "dashboard";
-    }
+
 
     @RequestMapping(value = "/Customer", method = RequestMethod.GET)
     public List<CustomerEntity> getObject(Model model) {
@@ -63,17 +70,6 @@ public class CustomerController {
 //        return new ModelAndView("/tables-customer").addObject("customersList", customers);
         return "tables-customer";
 //        return customers;
-    }
-
-
-    @RequestMapping(value = "/ticket-booking", method = RequestMethod.GET)
-    public String getTicket_Booking() {
-        return "ticket-booking";
-    }
-
-    @RequestMapping(value = "/movies", method = RequestMethod.GET)
-    public String getMovies() {
-        return "movies";
     }
 
     @RequestMapping(value = "/e-ticket", method = RequestMethod.GET)
@@ -132,6 +128,11 @@ public class CustomerController {
         System.out.println(users);
         // Xử lý logic đăng nhập
         System.out.println("sign in " + user_SignIn);
+        if(this.adminService.getAdminByEmailAndPassword(user_SignIn.getCustomer_email(), user_SignIn.getCustomer_password()) != null){
+            AdminEntity admin_SignIn = this.adminService.getAdminByEmailAndPassword(user_SignIn.getCustomer_email(), user_SignIn.getCustomer_password());
+            System.out.println("sign in " + admin_SignIn);
+            return "redirect:/dashboard";
+        }
         if (this.customerService.checkUserToLogin(user_SignIn.getCustomer_email(), user_SignIn.getCustomer_password())) {
             user_SignIn = this.customerService.getCustomerByEmailAndPassword(user_SignIn.getCustomer_email(), user_SignIn.getCustomer_password());
             System.out.println("sign in " + user_SignIn);

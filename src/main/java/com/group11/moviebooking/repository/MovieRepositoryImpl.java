@@ -1,7 +1,8 @@
 package com.group11.moviebooking.repository;
 
 
-import com.group11.moviebooking.util.MovieEntity;
+import com.group11.moviebooking.entity.MovieEntity;
+import com.group11.moviebooking.util.BasicImpl;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -186,7 +187,7 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
     public ArrayList<MovieEntity> getMoviesForAdults() {
         ArrayList<MovieEntity> movies = new ArrayList<>();
 
-        StringBuilder sql =  new StringBuilder();
+        StringBuilder sql = new StringBuilder();
         sql.append("SELECT * FROM tblmovies ");
         sql.append("WHERE movie_for_age >= 18 ");
         sql.append("ORDER BY movie_rating DESC ");
@@ -217,7 +218,7 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
     public ArrayList<MovieEntity> getMoviesForKids() {
         ArrayList<MovieEntity> movies = new ArrayList<>();
 
-        StringBuilder sql =  new StringBuilder();
+        StringBuilder sql = new StringBuilder();
         sql.append("SELECT * FROM tblmovies ");
         sql.append("WHERE movie_for_age <= 12 ");
         sql.append("ORDER BY movie_rating DESC ");
@@ -248,46 +249,32 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
     public ResultSet getTopSellingMovies() {
         ResultSet rs = null;
 
-        StringBuilder sql =  new StringBuilder();
-
-//        sql.append("SELECT" +
-//                "    m.movie_title, movie_poster_url, " +
-//                "    COUNT(bs.booking_seat_id) AS total_tickets_sold," +
-//                "    st.ticket_price," +
-//                "    COUNT(bs.booking_seat_id) * st.ticket_price AS revenue," +
-//                "    m.movie_rating " +
-//                "FROM " +
-//                "    tblmovies m " +
-//                "JOIN " +
-//                "    tblshowtimes st ON m.movie_id = st.movie_id " +
-//                "JOIN " +
-//                "    tblbookings b ON st.showtime_id = b.showtime_id " +
-//                "JOIN " +
-//                "    tblbooking_seats bs ON b.booking_id = bs.booking_id " +
-//                "GROUP BY " +
-//                "    m.movie_title, m.movie_rating, st.ticket_price " +
-//                "ORDER BY " +
-//                "    total_tickets_sold DESC, m.movie_rating DESC " +
-//                "LIMIT 5;");
-
+        StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("    m.movie_title, ")
-                .append("    m.movie_poster_url, ")
-                .append("    COUNT(b.booking_id) AS total_tickets_sold, ")
-                .append("    b.total_price AS ticket_price, ")
-                .append("    SUM(b.total_price) AS revenue ")
+                .append("m.movie_id, ")
+                .append("m.movie_title, ")
+                .append("m.movie_poster_url, ")
+                .append("m.movie_description, ")
+                .append("m.movie_main_actor, ")
+                .append("m.movie_studio , ")
+                .append("m.movie_release_date , ")
+                .append("m.movie_director , ")
+                .append("m.movie_rating , ")
+                .append("m.movie_duration, ")
+                .append("COUNT(b.booking_id) AS total_tickets_sold, ")
+                .append("b.total_price AS ticket_price, ")
+                .append("SUM(b.total_price) AS revenue ")
                 .append("FROM ")
-                .append("    tblmovies m ")
+                .append("tblmovies m ")
                 .append("JOIN ")
-                .append("    tblshowtimes s ON m.movie_id = s.movie_id ")
+                .append("tblshowtimes s ON m.movie_id = s.movie_id ")
                 .append("JOIN ")
-                .append("    tblbookings b ON s.showtime_id = b.showtime_id ")
+                .append("tblbookings b ON s.showtime_id = b.showtime_id ")
                 .append("GROUP BY ")
-                .append("    m.movie_id, m.movie_title, m.movie_poster_url ")
+                .append("m.movie_id, m.movie_title, m.movie_poster_url ")
                 .append("ORDER BY ")
-                .append("    total_tickets_sold DESC, revenue DESC ")
+                .append("total_tickets_sold DESC, revenue DESC ")
                 .append("LIMIT 5;");
-
 
         try {
             PreparedStatement pre = this.con.prepareStatement(sql.toString());
@@ -307,33 +294,22 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
         return rs;
     }
 
-    public HashMap<Object,Object> getTicketsSoldAndRevenue() {
+    public HashMap<Object, Object> getTicketsSoldAndRevenue() {
 
         HashMap<Object, Object> resultMap = new HashMap<>();
-        StringBuilder sql =  new StringBuilder();
-//        sql.append(" SELECT COUNT(booking_seat_id) AS total_tickets_sold FROM tblbooking_seats;" +
-//                "SELECT SUM(total) AS total_revenue" +
-//                "    FROM (" +
-//                "        SELECT st.ticket_price * COUNT(bs.booking_seat_id) AS total" +
-//                "        FROM tblshowtimes st" +
-//                "        JOIN tblbookings b ON st.showtime_id = b.showtime_id" +
-//                "        JOIN tblbooking_seats bs ON b.booking_id = bs.booking_id" +
-//                "        GROUP BY st.showtime_id" +
-//                "    ) AS revenue_per_showtime;");
+        StringBuilder sql = new StringBuilder();
 
-        sql.append(" SELECT COUNT(booking_id) AS total_tickets_sold FROM tblbookings;" +
-                "SELECT SUM(total_price) AS total_revenue" +
-                "    FROM tblbookings;");
-
+        sql.append(" SELECT COUNT(booking_id) AS total_tickets_sold FROM tblbookings;")
+        .append("SELECT SUM(total_price) AS total_revenue FROM tblbookings;");
         try {
             PreparedStatement pre = this.con.prepareStatement(sql.toString());
 
-            boolean  hasMoreResults = pre.execute();
+            boolean hasMoreResults = pre.execute();
 
-            if(hasMoreResults) {
+            if (hasMoreResults) {
                 ResultSet s1 = pre.getResultSet();
                 try {
-                    if(s1.next()) {
+                    if (s1.next()) {
                         resultMap.put("total_tickets_sold", s1.getInt("total_tickets_sold"));
                     }
                 } catch (SQLException e) {
@@ -341,11 +317,11 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
                 }
             }
 
-            if(pre.getMoreResults()){
+            if (pre.getMoreResults()) {
                 ResultSet s2 = pre.getResultSet();
 
                 try {
-                    if(s2.next()) {
+                    if (s2.next()) {
                         resultMap.put("total_revenue", s2.getInt("total_revenue"));
                     }
                 } catch (SQLException e) {

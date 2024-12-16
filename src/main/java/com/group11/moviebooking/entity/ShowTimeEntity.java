@@ -1,4 +1,4 @@
-package com.group11.moviebooking.util;
+package com.group11.moviebooking.entity;
 
 public class ShowTimeEntity {
     private int showtime_id;

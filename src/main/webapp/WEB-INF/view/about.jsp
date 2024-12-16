@@ -118,7 +118,7 @@
 						<div class="stats_left">
 							<div class="counter_grid">
 								<div class="icon_info">
-									<p class="counter">65</p>
+									<p class="counter">30</p>
 									<h4>Movies</h4>
 
 								</div>
@@ -127,7 +127,7 @@
 						<div class="stats_left">
 							<div class="counter_grid">
 								<div class="icon_info">
-									<p class="counter">165</p>
+									<p class="counter">62</p>
 									<h4>Shows</h4>
 
 								</div>
@@ -136,7 +136,7 @@
 						<div class="stats_left">
 							<div class="counter_grid">
 								<div class="icon_info">
-									<p class="counter">463</p>
+									<p class="counter">20</p>
 									<h4>Staff Members</h4>
 
 								</div>
@@ -145,7 +145,7 @@
 						<div class="stats_left">
 							<div class="counter_grid">
 								<div class="icon_info">
-									<p class="counter">5063</p>
+									<p class="counter">20</p>
 									<h4>No. of Users</h4>
 
 								</div>

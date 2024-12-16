@@ -2,6 +2,7 @@ package com.group11.moviebooking.repository;
 
 
 import com.group11.moviebooking.model.RevenueDTO;
+import com.group11.moviebooking.util.BasicImpl;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;

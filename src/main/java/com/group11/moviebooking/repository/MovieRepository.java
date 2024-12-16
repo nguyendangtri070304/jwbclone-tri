@@ -1,8 +1,7 @@
 package com.group11.moviebooking.repository;
 
-import com.group11.moviebooking.util.MovieEntity;
+import com.group11.moviebooking.entity.MovieEntity;
 
-import java.sql.Array;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,4 +17,5 @@ public interface MovieRepository {
     ArrayList<MovieEntity> getMoviesForKids();
     ResultSet getTopSellingMovies();
     HashMap<Object, Object> getTicketsSoldAndRevenue();
+
 }

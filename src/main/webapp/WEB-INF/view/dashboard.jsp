@@ -47,12 +47,12 @@
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-            <input type="text" name="query" placeholder="Tìm kiếm" title="Nhập vào từ khóa tìm kiếm">
-            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-        </form>
-    </div><!-- End Search Bar -->
+<%--    <div class="search-bar">--%>
+<%--        <form class="search-form d-flex align-items-center" method="POST" action="#">--%>
+<%--            <input type="text" name="query" placeholder="Tìm kiếm" title="Nhập vào từ khóa tìm kiếm">--%>
+<%--            <button type="submit" title="Search"><i class="bi bi-search"></i></button>--%>
+<%--        </form>--%>
+<%--    </div><!-- End Search Bar -->--%>
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -447,7 +447,7 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
+                                        <h6>20</h6>
                                     </div>
                                 </div>
 
@@ -584,8 +584,8 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-
                             </div>
+
 
                         </div>
                     </div><!-- End Top Selling Movies -->
@@ -597,77 +597,7 @@
             <!-- Right side columns -->
             <div class="col-lg-4">
                 <!-- Recent Activity -->
-                <div class="card">
-
-                    <div class="card-body">
-                        <h5 class="card-title">Recent Activity <span>| Movie Tickets</span></h5>
-
-                        <div class="activity">
-
-                            <!-- Activity Item -->
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">10 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                <div class="activity-content">
-                                    <a href="#" class="fw-bold text-dark">John Doe</a> purchased 2 tickets for
-                                    <a href="#" class="fw-bold text-primary">"Avatar: The Way of Water"</a>
-                                </div>
-                            </div><!-- End activity item -->
-
-                            <!-- Activity Item -->
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">30 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                                <div class="activity-content">
-                                    <a href="#" class="fw-bold text-dark">Jane Smith</a> reserved 3 tickets for
-                                    <a href="#" class="fw-bold text-primary">"Spider-Man: No Way Home"</a>
-                                </div>
-                            </div><!-- End activity item -->
-
-                            <!-- Activity Item -->
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">1 hr</div>
-                                <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                                <div class="activity-content">
-                                    <a href="#" class="fw-bold text-dark">Michael Brown</a> cancelled a reservation for
-                                    <a href="#" class="fw-bold text-primary">"The Batman"</a>
-                                </div>
-                            </div><!-- End activity item -->
-
-                            <!-- Activity Item -->
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">3 hrs</div>
-                                <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                                <div class="activity-content">
-                                    Failed payment for <a href="#" class="fw-bold text-primary">"Black Panther: Wakanda
-                                    Forever"</a>
-                                </div>
-                            </div><!-- End activity item -->
-
-                            <!-- Activity Item -->
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">1 day</div>
-                                <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                                <div class="activity-content">
-                                    New user <a href="#" class="fw-bold text-dark">Emily White</a> created an account
-                                </div>
-                            </div><!-- End activity item -->
-
-                            <!-- Activity Item -->
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">3 days</div>
-                                <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                                <div class="activity-content">
-                                    <a href="#" class="fw-bold text-dark">David Johnson</a> reviewed
-                                    <a href="#" class="fw-bold text-primary">"Doctor Strange in the Multiverse of
-                                        Madness"</a>
-                                </div>
-                            </div><!-- End activity item -->
-
-                        </div>
-
-                    </div>
-                </div><!-- End Recent Activity -->
+            <!-- End Recent Activity -->
 
 
                 <!-- News & Updates - Movie Dashboard -->

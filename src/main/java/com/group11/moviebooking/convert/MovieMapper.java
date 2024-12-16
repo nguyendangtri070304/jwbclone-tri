@@ -1,6 +1,7 @@
-package com.group11.moviebooking.util;
+package com.group11.moviebooking.convert;
 
 import com.group11.moviebooking.model.MovieDTO;
+import com.group11.moviebooking.entity.MovieEntity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ public class MovieMapper {
         movieDTO.setMovie_rating(movieEntity.getMovie_rating());
         movieDTO.setMovie_duration(movieEntity.getMovie_duration());
         movieDTO.setMovie_trailer_url(movieEntity.getMovie_trailer_url());
-        movieDTO.setMovie_realease_date(movieEntity.getMovie_realease_date());
+        movieDTO.setMovie_release_date(movieEntity.getMovie_realease_date());
         movieDTO.setMovie_main_actor(movieEntity.getMovie_main_actor());
         movieDTO.setMovie_director(movieEntity.getMovie_director());
         movieDTO.setMovie_studio(movieEntity.getMovie_studio());
@@ -35,7 +36,7 @@ public class MovieMapper {
         movieDTO.setMovie_rating(rs.getFloat("movie_rating"));
         movieDTO.setMovie_duration(rs.getInt("movie_duration"));
         movieDTO.setMovie_trailer_url(rs.getString("movie_trailer_url"));
-        movieDTO.setMovie_realease_date(rs.getString("movie_release_date"));
+        movieDTO.setMovie_release_date(rs.getString("movie_release_date"));
         movieDTO.setMovie_main_actor(rs.getString("movie_main_actor"));
         movieDTO.setMovie_director(rs.getString("movie_director"));
         movieDTO.setMovie_studio(rs.getString("movie_studio"));

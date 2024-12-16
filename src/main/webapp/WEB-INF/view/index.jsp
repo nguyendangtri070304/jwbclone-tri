@@ -152,21 +152,49 @@
                             <c:forEach var="movie" items="${popularMovies}" begin="0" end="3">
                                 <div class="item vhny-grid">
                                     <div class="box16">
-                                        <a href="/movies">
                                             <figure>
                                                 <img class="img-fluid" src="${movie.movie_poster_url}" alt="">
                                             </figure>
+                                        <a href="#modal-${movie.movie_id}" data-toggle="modal">
                                             <div class="box-content">
                                                 <h3 class="title">${movie.movie_title}</h3>
-                                                <h4> <span class="post"><span class="fa fa-clock-o"> </span>
-
-                                                </span>
-
-                                                    <span class="post fa fa-heart text-right"></span>
+                                                <h4>
+                                                    <span class="post"><span class="fa fa-clock-o"> </span> ${movie.movie_duration} min</span>
+                                                    <span class="post fa fa-heart text-right"> ${movie.movie_rating} / 10</span>
                                                 </h4>
                                             </div>
-                                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
                                         </a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modal-${movie.movie_id}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content" id="mymodalcontent">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="exampleModalLongTitle">DETAILS</h4>
+                                                        <button type="button" class="closebtn" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" id="dynamic-content">
+                                                        <img src="${movie.movie_poster_url}" class="img-fluid modalimg" alt="" />
+                                                        <p>
+                                                        <h3>Release Date: ${movie.movie_release_date}</h3>
+                                                        <h3>Venue: MyShowz Ha Noi</h3>
+                                                        </p>
+                                                        <h4>About Movie</h4>
+                                                        <p>${movie.movie_description}</p>
+                                                        <h4>Star Cast</h4>
+                                                        <p>${movie.movie_main_actor}</p>
+                                                        <h4>Studio</h4>
+                                                        <p>${movie.movie_studio}</p>
+                                                    </div>
+                                                    <div class="bookbtn">
+                                                        <button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- modal end -->
+                                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -190,28 +218,51 @@
                             </div>
                         </div>
                         <div class="owl-three owl-carousel owl-theme">
-                            <c:forEach items="${topRatingMovies}" var="movie">
+                            <c:forEach items="${latestMovies}" var="movie" begin="0" end="3">
                                 <div class="item vhny-grid">
                                     <div class="box16 mb-0">
-                                        <a href="">
-                                            <figure>
-                                                <img class="img-fluid" src="${movie.movie_poster_url}" alt="">
-                                            </figure>
+                                        <figure>
+                                            <img class="img-fluid" src="${movie.movie_poster_url}" alt="">
+                                        </figure>
+                                        <a href="#modal-${movie.movie_id}" data-toggle="modal">
                                             <div class="box-content">
-                                                <h4> <span class="post"><span class="fa fa-clock-o"> </span> ${movie.movie_duration} min
-
-                                                </span>
-
-                                                    <span class="post fa fa-heart text-right">${movie.movie_rating} / 10</span>
+                                                <h3 class="title">${movie.movie_title}</h3>
+                                                <h4>
+                                                    <span class="post"><span class="fa fa-clock-o"> </span> ${movie.movie_duration} min</span>
+                                                    <span class="post fa fa-heart text-right"> ${movie.movie_rating} / 10</span>
                                                 </h4>
                                             </div>
-                                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
                                         </a>
-                                    </div>
-                                    <h3> <a class="title-gd" href="">${movie.movie_title}</a></h3>
-                                    <p>${movie.movie_description}</p>
-                                    <div class="button-center text-center mt-4">
-                                        <a href="${movie.movie_trailer_url}" class="btn watch-button">Watch now</a>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modal-${movie.movie_id}" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content" id="mymodalcontent">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="exampleModalLongTitle">DETAILS</h4>
+                                                        <button type="button" class="closebtn" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body" id="dynamic-content">
+                                                        <img src="${movie.movie_poster_url}" class="img-fluid modalimg" alt="" />
+                                                        <p>
+                                                        <h3>Release Date: ${movie.movie_release_date}</h3>
+                                                        <h3>Venue: MyShowz Ha Noi</h3>
+                                                        </p>
+                                                        <h4>About Movie</h4>
+                                                        <p>${movie.movie_description}</p>
+                                                        <h4>Star Cast</h4>
+                                                        <p>${movie.movie_main_actor}</p>
+                                                        <h4>Studio</h4>
+                                                        <p>${movie.movie_studio}</p>
+                                                    </div>
+                                                    <div class="bookbtn">
+                                                        <button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- modal end -->
                                     </div>
                                 </div>
                             </c:forEach>

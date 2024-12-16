@@ -3,7 +3,8 @@ package com.group11.moviebooking.repository;
 
 import com.group11.moviebooking.util.ConnectionPool;
 import com.group11.moviebooking.util.ConnectionPoolImpl;
-import com.group11.moviebooking.util.CustomerEntity;
+import com.group11.moviebooking.entity.CustomerEntity;
+import com.group11.moviebooking.util.BasicImpl;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -150,7 +151,7 @@ public class CustomerRepositoryImpl extends BasicImpl implements CustomerReposit
     @Override
     public CustomerEntity getUserByCustomerEmail(String customer_email) {
         CustomerEntity customer = null;
-        String sql = "SELECT * FROM tblcustomers WHERE customer_email =?";
+        String sql = "SELECT * FROM tblcustomers WHERE customer_email = ?";
         try {
             PreparedStatement pre = this.con.prepareStatement(sql);
             pre.setString(1, customer_email);  // Bind the parameter

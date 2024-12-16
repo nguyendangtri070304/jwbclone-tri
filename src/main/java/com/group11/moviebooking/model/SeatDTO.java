@@ -1,6 +1,6 @@
 package com.group11.moviebooking.model;
 
-import com.group11.moviebooking.util.SeatEntity;
+import com.group11.moviebooking.entity.SeatEntity;
 
 public class SeatDTO {
     private int seat_id;

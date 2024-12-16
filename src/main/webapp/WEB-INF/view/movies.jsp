@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="assets/css/style-starter.css">
 	<link href="//fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
 		rel="stylesheet">
-	
+
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 				<h1><a class="navbar-brand" href="/home"><span class="fa fa-play icon-log"
 							aria-hidden="true"></span>
 							MyShowz </a></h1>
-				<!-- if logo is image enable this   
+				<!-- if logo is image enable this
 							<a class="navbar-brand" href="#/home">
 								<img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
 							</a> -->
@@ -51,45 +51,24 @@
 					</ul>
 
 					<!--/search-right-->
-					<!--/search-right-->
 					<div class="search-right">
-						<a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search <span
-								class="fa fa-search ml-3" aria-hidden="true"></span></a>
+						<a href="#search" class="btn search-hny mr-lg-3 mt-lg-0 mt-4" title="search">Search
+							<span class="fa fa-search ml-3" aria-hidden="true"></span></a>
 						<!-- search popup -->
 						<div id="search" class="pop-overlay">
 							<div class="popup">
-								<form action="#" method="post" class="search-box">
-									<input type="search" placeholder="Search your Keyword" name="search"
-										required="required" autofocus="">
+								<form action="/movies/movie_title" method="GET" class="search-box">
+									<input type="search" placeholder="Search your Keyword" name="title"
+										   required="required" autofocus="">
 									<button type="submit" class="btn"><span class="fa fa-search"
-											aria-hidden="true"></span></button>
+																			aria-hidden="true"></span></button>
 								</form>
-								<div class="browse-items">
-									<h3 class="hny-title two mt-md-5 mt-4">Browse all:</h3>
-									<ul class="search-items">
-										<li><a href="/movies">Action</a></li>
-										<li><a href="/movies">Drama</a></li>
-										<li><a href="/movies">Family</a></li>
-										<li><a href="/movies">Thriller</a></li>
-										<li><a href="/movies">Commedy</a></li>
-										<li><a href="/movies">Romantic</a></li>
-										<li><a href="/movies">Tv-Series</a></li>
-										<li><a href="/movies">Horror</a></li>
-										<li><a href="/movies">Action</a></li>
-										<li><a href="/movies">Drama</a></li>
-										<li><a href="/movies">Family</a></li>
-										<li><a href="/movies">Thriller</a></li>
-										<li><a href="/movies">Commedy</a></li>
-										<li><a href="/movies">Romantic</a></li>
-										<li><a href="/movies">Tv-Series</a></li>
-										<li><a href="/movies">Horror</a></li>
-									</ul>
-								</div>
 							</div>
 							<a class="close" href="#close">×</a>
 						</div>
 						<!-- /search popup -->
 						<!--/search-right-->
+
 					</div>
 					<div class="Login_SignUp" id="login"
 						style="font-size: 2rem ; display: inline-block; position: relative;">
@@ -126,7 +105,7 @@
 	</div>
 	<!--/movies -->
 	<!--grids-sec1-->
-	<section class="w3l-grids">
+	<<section class="w3l-grids">
 		<div class="grids-main py-4">
 			<div class="container py-lg-4">
 				<div class="headerhny-title">
@@ -245,7 +224,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section>-->
 	<!--grids-sec1-->
 	<section class="w3l-grids">
 		<div class="grids-main py-5">
@@ -289,7 +268,7 @@
 											<div class="modal-body" id="dynamic-content">
 												<img src="${movie.movie_poster_url}" class="img-fluid modalimg" alt="" />
 												<p>
-												<h3>Release Date: ${movie.movie_realease_date}</h3>
+												<h3>Release Date: ${movie.movie_release_date}</h3>
 												<h3>Venue: MyShowz Ha Noi</h3>
 												</p>
 												<h4>About Movie</h4>
@@ -300,7 +279,7 @@
 												<p>${movie.movie_studio}</p>
 											</div>
 											<div class="bookbtn">
-												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking?movie_id=${movie.movie_id}';">Book</button>
 											</div>
 										</div>
 									</div>
@@ -350,7 +329,7 @@
 											<div class="modal-body" id="dynamic-content">
 												<img src="${movie.movie_poster_url}" class="img-fluid modalimg" alt="" />
 												<p>
-												<h3>Release Date: ${movie.movie_realease_date}</h3>
+												<h3>Release Date: ${movie.movie_release_date}</h3>
 												<h3>Venue: MyShowz Ha Noi</h3>
 												</p>
 												<h4>About Movie</h4>
@@ -410,7 +389,7 @@
 											<div class="modal-body" id="dynamic-content">
 												<img src="${movie.movie_poster_url}" class="img-fluid modalimg" alt="" />
 												<p>
-												<h3>Release Date: ${movie.movie_realease_date}</h3>
+												<h3>Release Date: ${movie.movie_release_date}</h3>
 												<h3>Venue: MyShowz Ha Noi</h3>
 												</p>
 												<h4>About Movie</h4>
@@ -469,7 +448,7 @@
 											<div class="modal-body" id="dynamic-content">
 												<img src="${movie.movie_poster_url}" class="img-fluid modalimg" alt="" />
 												<p>
-												<h3>Release Date: ${movie.movie_realease_date}</h3>
+												<h3>Release Date: ${movie.movie_release_date}</h3>
 												<h3>Venue: MyShowz Ha Noi</h3>
 												</p>
 												<h4>About Movie</h4>

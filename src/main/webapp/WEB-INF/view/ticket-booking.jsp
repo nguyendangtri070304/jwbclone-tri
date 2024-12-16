@@ -72,35 +72,13 @@
                   <div id="screen-select-div">
                     <h2>Show time Selection</h2>
                     <div class="carousel carousel-nav" data-flickity='{"contain": true, "pageDots": false }'>
-                      <div class="carousel-cell" id="1" onclick="myFunction(1)">
-                        <div class="date-numeric">13</div>
-                        <div class="date-day">Today</div>
-                      </div>
+                      <c:forEach items="${uniqueDates}" var="date" varStatus="status">
+                        <div class="carousel-cell" id="${status.index}" onclick="myFunction(${status.index})">
+                          <div class="date-numeric">${date}</div>
+                          <div class="date-day"></div>
+                        </div>
+                      </c:forEach>
 
-                      <div class="carousel-cell" id="2" onclick="myFunction(2)">
-                        <div class="date-numeric">14</div>
-                        <div class="date-day">Tomorrow</div>
-                      </div>
-                      <div class="carousel-cell" id="3" onclick="myFunction(3)">
-                        <div class="date-numeric">15</div>
-                        <div class="date-day">Monday</div>
-                      </div>
-                      <div class="carousel-cell" id="4" onclick="myFunction(4)">
-                        <div class="date-numeric">16</div>
-                        <div class="date-day">Tuesday</div>
-                      </div>
-                      <div class="carousel-cell" id="5" onclick="myFunction(5)">
-                        <div class="date-numeric">17</div>
-                        <div class="date-day">Wednesday</div>
-                      </div>
-                      <div class="carousel-cell" id="6" onclick="myFunction(6)">
-                        <div class="date-numeric">18</div>
-                        <div class="date-day">Thursday</div>
-                      </div>
-                      <div class="carousel-cell" id="7" onclick="myFunction(7)">
-                        <div class="date-numeric">19</div>
-                        <div class="date-day">Friday</div>
-                      </div>
                     </div>
                     <ul class="time-ul">
                       <li class="time-li">

@@ -1,9 +1,9 @@
 package com.group11.moviebooking.service;
 
 
-import com.group11.moviebooking.repository.BasicImpl;
+import com.group11.moviebooking.util.BasicImpl;
 import com.group11.moviebooking.repository.CustomerRepositoryImpl;
-import com.group11.moviebooking.util.CustomerEntity;
+import com.group11.moviebooking.entity.CustomerEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

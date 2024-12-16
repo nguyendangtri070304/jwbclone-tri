@@ -1,7 +1,4 @@
-package com.group11.moviebooking.repository;
-
-import com.group11.moviebooking.util.ConnectionPool;
-import com.group11.moviebooking.util.ConnectionPoolImpl;
+package com.group11.moviebooking.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BasicImpl implements Basic{
+public class BasicImpl implements Basic {
 
     // Doi tuong lam viec voi Basic
     private String objectName;

@@ -6,10 +6,11 @@ import com.group11.moviebooking.convert.MappingDTOtoJSON;
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.model.RevenueDTO;
 import com.group11.moviebooking.service.MovieService;
+import com.group11.moviebooking.service.PromotionService;
 import com.group11.moviebooking.service.RevenueService;
+import com.group11.moviebooking.entity.PromotionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,12 +23,14 @@ public class DashboardController {
 
     private MovieService movieService;
     private RevenueService revenueService;
+    private PromotionService promotionService;
     private MappingDTOtoJSON map;
 
     @Autowired
-    public DashboardController(MovieService movieService, RevenueService revenueService) {
+    public DashboardController(MovieService movieService, RevenueService revenueService, PromotionService promotionService) {
         this.movieService = movieService;
         this.revenueService = revenueService;
+        this.promotionService = promotionService;
     }
 
     @GetMapping("/dashboard")
@@ -55,6 +58,9 @@ public class DashboardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        List<PromotionEntity> promotions = promotionService.getAllPromotions();
+        modelAndView.addObject("promotions", promotions);
 
         return modelAndView;
     }

@@ -3,7 +3,7 @@ package com.group11.moviebooking.controller;
 
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.service.MovieService;
-import com.group11.moviebooking.util.MovieEntity;
+import com.group11.moviebooking.entity.MovieEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -97,6 +97,9 @@ public class MovieController {
 
         List<MovieDTO> ratingMovies = getTopMovieByRating();
         modelAndView.addObject("ratingMovies", ratingMovies);
+
+        List<MovieDTO> popularMovies = movieService.getTopSellingMovies();
+        modelAndView.addObject("popularMovies", popularMovies);
 
         return modelAndView;
     }

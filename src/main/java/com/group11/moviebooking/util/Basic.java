@@ -1,4 +1,4 @@
-package com.group11.moviebooking.repository;
+package com.group11.moviebooking.util;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
