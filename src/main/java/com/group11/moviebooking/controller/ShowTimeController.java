@@ -3,62 +3,71 @@ package com.group11.moviebooking.controller;
 import com.group11.moviebooking.model.ShowTimeDTO;
 import com.group11.moviebooking.service.MovieService;
 import com.group11.moviebooking.service.ShowTimeService;
+import jakarta.servlet.RequestDispatcher;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.StringWriter;
+import java.util.*;
 
 @RestController
 public class ShowTimeController {
 
     private final MovieService movieService;
     private final ShowTimeService showtimeService;
+
     public ShowTimeController(MovieService movieService, ShowTimeService showtimeService) {
         this.movieService = movieService;
         this.showtimeService = showtimeService;
     }
 
-    @GetMapping("/show")
-    public List<ShowTimeDTO> getShowtimeByMovieId(@RequestParam("movie_id") int movie_id) {
-        return showtimeService.getShowTimeByMovieId(movie_id);
-    }
-    public List<ShowTimeDTO> getShowTimeByMovieAndDate(@RequestParam("movie_id") int movie_id, @RequestParam("show_date") String show_date) {
+    public List<ShowTimeDTO> getShowTimeByMovieAndDate(int movie_id, String show_date) {
         return showtimeService.getShowTimeByMovieAndDate(movie_id, show_date);
+    }
+
+    public List<ShowTimeDTO> getShowTimeByMovieId(int movie_id) {
+        return showtimeService.getShowTimeByMovieId(movie_id);
     }
 
     @GetMapping("/ticket-booking")
     public ModelAndView showShowTimes(@RequestParam("movie_id") int movie_id) {
         ModelAndView modelAndView = new ModelAndView("/ticket-booking");
+
         if (movie_id == -1) {
-            // Nếu movie_id không hợp lệ hoặc bị thiếu, trả về trang lỗi
             modelAndView.setViewName("error");
             modelAndView.addObject("errorMessage", "Invalid movie ID.");
             return modelAndView;
         }
-        // Lấy danh sách showtime cho movie_id
-        List<ShowTimeDTO> showtimes = showtimeService.getShowTimeByMovieId(movie_id);
 
-        // Lọc các ngày duy nhất
+        List<ShowTimeDTO> showtimes = getShowTimeByMovieId(movie_id);
         Set<String> uniqueDates = new LinkedHashSet<>();
+        Map<String, List<ShowTimeDTO>> showtimesByDate = new LinkedHashMap<>();
+
+        // Tổ chức danh sách showtimes theo ngày
         for (ShowTimeDTO showtime : showtimes) {
             uniqueDates.add(showtime.getShow_date());
+            showtimesByDate.computeIfAbsent(showtime.getShow_date(), k -> new ArrayList<>()).add(showtime);
         }
 
-        // Gửi dữ liệu đến JSP
         modelAndView.addObject("uniqueDates", uniqueDates);
-        modelAndView.addObject("showtimes", showtimes);
-        modelAndView.addObject("movie_id", movie_id);  // Truyền movie_id đến JSP
+        modelAndView.addObject("showtimesByDate", showtimesByDate);  // Thêm danh sách showtimes theo ngày
+        modelAndView.addObject("movie_id", movie_id);
 
         return modelAndView;
     }
 
-    @GetMapping("/showrooms")
+    @GetMapping()
     public ModelAndView showRooms(@RequestParam("movie_id") int movie_id, @RequestParam("show_date") String show_date) {
         ModelAndView modelAndView = new ModelAndView("/ticket-booking");
+        if (movie_id == -1) {
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errorMessage", "Invalid movie ID.");
+            return modelAndView;
+        }
 
         // Lấy danh sách phòng chiếu cho movie_id và show_date
         List<ShowTimeDTO> showtimes = showtimeService.getShowTimeByMovieAndDate(movie_id, show_date);
@@ -70,7 +79,6 @@ public class ShowTimeController {
         modelAndView.addObject("uniqueRooms", uniqueRooms);
         modelAndView.addObject("showtimes", showtimes);
         modelAndView.addObject("movie_id", movie_id);  // Truyền lại movie_id để sử dụng tiếp
-
         return modelAndView;
     }
 
@@ -85,4 +93,16 @@ public class ShowTimeController {
 
         return modelAndView;
     }
+
+    @GetMapping("/showrooms")
+    @ResponseBody
+    public List<ShowTimeDTO> getShowrooms(@RequestParam("movie_id") int movie_id,
+                                          @RequestParam("show_date") String show_date) {
+        System.out.println("Movie ID: " + movie_id + ", Show Date: " + show_date);  // Kiểm tra tham số nhận được
+        List<ShowTimeDTO> showtimes = showtimeService.getShowTimeByMovieAndDate(movie_id, show_date);
+
+        System.out.println("Showtimes: " + showtimes);  // Kiểm tra dữ liệu trả về
+        return showtimes;
+    }
+
 }

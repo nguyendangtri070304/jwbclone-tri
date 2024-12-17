@@ -478,6 +478,8 @@
 		</div>
 	</section>
 
+
+	<!--Extenension-->
 	<section class="w3l-albums py-5" id="projects">
 		<div class="container py-lg-4">
 			<div class="row">
