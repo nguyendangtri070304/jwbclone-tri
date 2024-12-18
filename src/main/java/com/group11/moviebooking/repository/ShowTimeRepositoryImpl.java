@@ -99,15 +99,17 @@ public class ShowTimeRepositoryImpl extends BasicImpl implements ShowTimeReposit
             pre.setString(3, start_time);
             ResultSet rs = pre.executeQuery();
 
-            showtimeEntity.setShowtime_id(rs.getInt("showtime_id"));
-            showtimeEntity.setMovie_id(rs.getInt("movie_id"));
-            showtimeEntity.setRoom_id(rs.getInt("room_id"));
-            showtimeEntity.setShow_date(rs.getString("show_date"));
-            showtimeEntity.setStart_time(rs.getString("start_time"));
-            showtimeEntity.setEnd_time(rs.getString("end_time"));
-            showtimeEntity.setTicket_price(rs.getInt("ticket_price"));
-            showtimeEntity.setShowtime_created_at(rs.getString("showtime_created_at"));
-            showtimeEntity.setShowtime_updated_at(rs.getString("showtime_updated_at"));
+            while(rs.next()) {
+                showtimeEntity.setShowtime_id(rs.getInt("showtime_id"));
+                showtimeEntity.setMovie_id(rs.getInt("movie_id"));
+                showtimeEntity.setRoom_id(rs.getInt("room_id"));
+                showtimeEntity.setShow_date(rs.getString("show_date"));
+                showtimeEntity.setStart_time(rs.getString("start_time"));
+                showtimeEntity.setEnd_time(rs.getString("end_time"));
+                showtimeEntity.setTicket_price(rs.getInt("ticket_price"));
+                showtimeEntity.setShowtime_created_at(rs.getString("showtime_created_at"));
+                showtimeEntity.setShowtime_updated_at(rs.getString("showtime_updated_at"));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

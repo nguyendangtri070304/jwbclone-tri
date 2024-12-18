@@ -384,35 +384,19 @@
 
     <script>
       let prevId = "1";
-
-      window.onload = function () {
-        document.getElementById("screen-next-btn").disabled = true;
-      }
-
       let selectedDate = null;
       let selectedTime = null;
       let selectedRoomId = null;
 
-      function timeFunction() {
-        document.getElementById("screen-next-btn").disabled = false;
-      }
+      window.onload = function () {
+        document.getElementById("screen-next-btn").disabled = true;
 
-      function checkContinueButton() {
-        // Kiểm tra nếu cả ngày và giờ đều đã được chọn, kích hoạt nút "Continue"
-        if (selectedDate && selectedTime) {
-          document.getElementById("screen-next-btn").disabled = false;
-        } else {
-          document.getElementById("screen-next-btn").disabled = true;
-        }
-      }
-
-      window.onload = function() {
-        // Tự động chọn ngày đầu tiên trong danh sách khi trang được tải
-        const firstButton = document.querySelector('.carousel-cell'); // Lấy button đầu tiên trong danh sách
+        // Tự động chọn ngày đầu tiên trong danh sách
+        const firstButton = document.querySelector('.carousel-cell');
         if (firstButton) {
-          const id = firstButton.id; // Lấy ID của button đầu tiên
-          const date = firstButton.querySelector('.date-numeric').innerText; // Lấy giá trị ngày từ button
-          myFunction(id, date); // Gọi hàm myFunction với ID và ngày đó
+          const id = firstButton.id;
+          const date = firstButton.querySelector('.date-numeric').innerText;
+          myFunction(id, date);
         }
       };
 
@@ -424,77 +408,71 @@
         document.getElementById(id).style.background = "#df0e62";
         prevId = id;
 
-        selectedDate = date; // Lưu ngày đã chọn
-        checkContinueButton(); // Kiểm tra lại trạng thái nút "Continue"
+        selectedDate = date;
+        selectedTime = "";
+        checkContinueButton();
 
-        var form = document.createElement("form");
+        const form = document.createElement("form");
         form.method = "GET";
-        form.action = "/showrooms"; // Đảm bảo rằng URL trùng với đường dẫn API của bạn
+        form.action = "/showrooms";
 
-        // Thêm tham số vào form
-        var movieIdInput = document.createElement("input");
+        const movieIdInput = document.createElement("input");
         movieIdInput.type = "hidden";
-        movieIdInput.name = "movie_id"; // Tên tham số phải trùng với @RequestParam trong Controller
-        movieIdInput.value = document.querySelector('[data-movie-id]').getAttribute('data-movie-id'); // Lấy movie_id từ thuộc tính data của nút
+        movieIdInput.name = "movie_id";
+        movieIdInput.value = document.querySelector('[data-movie-id]').getAttribute('data-movie-id');
         form.appendChild(movieIdInput);
 
-        var dateInput = document.createElement("input");
+        const dateInput = document.createElement("input");
         dateInput.type = "hidden";
-        dateInput.name = "show_date"; // Tên tham số phải trùng với @RequestParam trong Controller
+        dateInput.name = "show_date";
         dateInput.value = date;
         form.appendChild(dateInput);
 
-        // Gửi form qua fetch
         fetch(form.action + "?" + new URLSearchParams(new FormData(form)).toString())
-                .then(response => response.json()) // Giả sử API trả về dữ liệu JSON
+                .then(response => response.json())
                 .then(data => {
-                  if (data && data.length > 0) {
-                    // Cập nhật nội dung phòng và thời gian chiếu
-                    var timeUl = document.querySelector(".time-ul");
-                    timeUl.innerHTML = ""; // Xóa nội dung cũ
+                  const timeUl = document.querySelector(".time-ul");
+                  timeUl.innerHTML = ""; // Xóa nội dung cũ
 
-                    // Lặp qua các dữ liệu showtime để tạo danh sách phòng chiếu và thời gian chiếu
-                    let screens = {}; // Để nhóm thời gian chiếu theo phòng
+                  let screens = {};
+                  data.forEach(showtime => {
+                    const roomId = showtime.room_id;
+                    const startTime = showtime.start_time;
 
-                    data.forEach(showtime => {
-                      const roomId = showtime.room_id;
-                      const startTime = showtime.start_time;
+                    if (!screens[roomId]) {
+                      screens[roomId] = [];
+                    }
+                    screens[roomId].push(startTime);
+                  });
 
-                      // Tạo cấu trúc nhóm theo phòng
-                      if (!screens[roomId]) {
-                        screens[roomId] = [];
-                      }
-                      screens[roomId].push(startTime);
+                  for (const roomId in screens) {
+                    let screenLi = document.createElement("li");
+                    screenLi.classList.add("time-li");
+
+                    let screenDiv = document.createElement("div");
+                    screenDiv.classList.add("screens");
+                    screenDiv.innerText = "Screen " + roomId;
+                    screenLi.appendChild(screenDiv);
+
+                    let timeBtnDiv = document.createElement("div");
+                    timeBtnDiv.classList.add("time-btn");
+
+                    screens[roomId].forEach(time => {
+                      let button = document.createElement("button");
+                      button.classList.add("screen-time");
+                      button.innerText = time;
+
+                      button.onclick = function () {
+                        timeFunction(roomId, time);
+                        document.querySelectorAll('.screen-time').forEach(btn => btn.classList.remove('selected'));
+                        button.classList.add('selected');
+                      };
+
+                      timeBtnDiv.appendChild(button);
                     });
 
-                    // Tạo phần tử li cho mỗi phòng chiếu và thời gian chiếu
-                    for (const roomId in screens) {
-                      let screenLi = document.createElement("li");
-                      screenLi.classList.add("time-li");
-
-                      // Tạo phần tử cho tên phòng
-                      let screenDiv = document.createElement("div");
-                      screenDiv.classList.add("screens");
-                      screenDiv.innerText = "Screen " + roomId;
-                      screenLi.appendChild(screenDiv);
-
-                      // Tạo phần tử cho danh sách thời gian chiếu
-                      let timeBtnDiv = document.createElement("div");
-                      timeBtnDiv.classList.add("time-btn");
-
-                      screens[roomId].forEach(time => {
-                        let button = document.createElement("button");
-                        button.classList.add("screen-time");
-                        button.innerText = time;
-                        button.onclick = function() {
-                          timeFunction(); // Hàm bạn cần để xử lý khi chọn thời gian
-                        };
-                        timeBtnDiv.appendChild(button);
-                      });
-
-                      screenLi.appendChild(timeBtnDiv);
-                      timeUl.appendChild(screenLi);
-                    }
+                    screenLi.appendChild(timeBtnDiv);
+                    timeUl.appendChild(screenLi);
                   }
                 })
                 .catch(error => {
@@ -502,14 +480,50 @@
                 });
       }
 
-      function continueBooking() {
-        const movieId = document.querySelector('[data-movie-id]').getAttribute('data-movie-id'); // Lấy movie_id
-        const selectedRoom = document.querySelector('.screens.selected').getAttribute('data-room-id'); // Lấy room_id từ phòng được chọn
-        const selectedTime = document.querySelector('.screen-time.selected').innerText; // Lấy start_time từ thời gian được chọn
+      function timeFunction(roomId, startTime) {
+        selectedRoomId = roomId;
+        selectedTime = startTime;
+        checkContinueButton();
+      }
 
-        // Xây dựng URL với các tham số
-        const url = `/seat?movie_id=${movieId}&room_id=${selectedRoom}&start_time=${selectedTime}`;
-        window.location.href = url; // Điều hướng tới API
+      function checkContinueButton() {
+        document.getElementById("screen-next-btn").disabled = !(selectedDate && selectedRoomId && selectedTime);
+      }
+
+      function continueBooking() {
+        const movie_id = document.querySelector('[data-movie-id]').getAttribute('data-movie-id');
+        const room_id = selectedRoomId;
+        const start_time = selectedTime;
+
+        // Kiểm tra các giá trị để đảm bảo không trống
+        if (!movie_id || !room_id || !start_time) {
+          alert("Please select a date, room, and start time before continuing!");
+          return;
+        }
+
+        console.log("movie_id: ", movie_id);
+        console.log("room id: ", room_id);
+        console.log("start time: ", start_time);
+
+        // Tạo URL và gửi request
+        const url = '/seat?movie_id=' +  movie_id + '&room_id=' + room_id + '&start_time=' + start_time;
+        console.log(url);
+
+        fetch(url, {
+          method: 'GET',
+        })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                  }
+                  return response.json();
+                })
+                .then(data => {
+                  console.log("Data received:", data);
+                })
+                .catch(error => {
+                  console.error('Error fetching seat availability:', error);
+                });
       }
 
     </script>
