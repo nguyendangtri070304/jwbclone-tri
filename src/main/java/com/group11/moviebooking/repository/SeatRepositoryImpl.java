@@ -29,7 +29,7 @@ public class SeatRepositoryImpl extends BasicImpl implements SeatRepository{
 //        sql.append("AND   AND b.showtime_id = ?");
 //        sql.append("ORDER BY s.seat_row, s.seat_column;");
 
-        sql.append("SELECT s.seat_id, s.seat_row, s.seat_column, s.seat_type, s.seat_status ");
+        sql.append("SELECT s.seat_id, s.seat_row, s.seat_column, s.seat_type, s.seat_status, r.room_id ");
         sql.append("FROM tblseats s ");
         sql.append("JOIN tblrooms r ON s.room_id = r.room_id ");
         sql.append("JOIN tblshowtimes st ON r.room_id = st.room_id ");

@@ -99,7 +99,7 @@
                   <div>
                     <iframe id="seat-sel-iframe"
                       style="  box-shadow: 0 14px 12px 0 var(--theme-border), 0 10px 50px 0 var(--theme-border); width: 800px; height: 550px; display: block; margin-left: auto; margin-right: auto;"
-                      src="/seat_sel"></iframe>
+                      src=""></iframe>
                   </div>
                   <br>
                   <input type="button" name="next-step" class="next-step" value="Proceed to Payment" />
@@ -507,23 +507,10 @@
 
         // Tạo URL và gửi request
         const url = '/seat?movie_id=' +  movie_id + '&room_id=' + room_id + '&start_time=' + start_time;
-        console.log(url);
+        console.log("Requesting URL:", url);
 
-        fetch(url, {
-          method: 'GET',
-        })
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                  }
-                  return response.json();
-                })
-                .then(data => {
-                  console.log("Data received:", data);
-                })
-                .catch(error => {
-                  console.error('Error fetching seat availability:', error);
-                });
+        const iframe = document.getElementById('seat-sel-iframe');
+        iframe.src = url;
       }
 
     </script>

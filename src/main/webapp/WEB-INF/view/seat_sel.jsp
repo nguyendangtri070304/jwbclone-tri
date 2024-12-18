@@ -21,21 +21,23 @@
 	<div class="main">
 		<div class="demo">
 			<div id="seat-map">
-				<div class="front">SCREEN</div>					
+				<div class="front">SCREEN ${room_id}</div>
 			</div>
 			<div class="booking-details">
 				<ul class="book-left">
 					<li>Movie </li>
-					<li>Time </li>
+					<li>Date </li>
+					<li>Time</li>
 					<li>Tickets</li>
 					<li>Total</li>
 					<li>Selected Seats</li>
 				</ul>
 				<ul class="book-right">
 					<li>: Commando 3</li>
-					<li>: April 12, 22:00</li>
+					<li>: ${show_date}</li>
+					<li>: ${start_time} -  ${end_time}</li>
 					<li>: <span id="counter">0</span></li>
-					<li>: <b><i>RS.</i><span id="total">0</span></b></li>
+					<li>: <b><span id="total">0<i> VND</i></span></b></li>
 				</ul>
 				<div class="clear"></div>
 				<ul id="selected-seats" class="scrollbar scrollbar1"></ul>
@@ -45,7 +47,7 @@
 			</div>
 
 			<script type="text/javascript">
-				var price = 110; //price
+				var price = ${ticket_price}; //price
 				$(document).ready(function () {
 					var $cart = $('#selected-seats'), //Sitting Area
 						$counter = $('#counter'), //Votes
@@ -106,9 +108,21 @@
 							}
 						}
 					});
-					//sold seat
-					sc.get(['1_2', '4_4', '4_5', '6_6', '6_7', '8_5', '8_6', '8_7', '8_8', '10_1', '10_2']).status(
-						'unavailable');
+					// Nhận JSON từ backend
+					var soldseats = [];
+					try {
+						// ${soldseats} được JSP render dưới dạng chuỗi
+						soldseats = JSON.parse('${soldseats}'.replace(/&quot;/g, '"'));
+						console.log("Sold seats:", soldseats);
+					} catch (e) {
+						console.error("Lỗi khi parse JSON:", e);
+					}
+					// Đánh dấu ghế đã bán
+					soldseats.forEach(function (seat) {
+						var seatId = seat.seat_row + "_" + seat.seat_column;
+						console.log("Marking seat as unavailable:", seatId); // In ra ID ghế
+						sc.get([seatId]).status('unavailable');
+					});
 
 				});
 				//sum total money
