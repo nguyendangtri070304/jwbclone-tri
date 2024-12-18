@@ -13,4 +13,5 @@ public interface ShowTimeRepository {
 
     List<ShowTimeEntity> getShowTimesByRoom(int movie_id, String show_date, int room_id);
 
+    ShowTimeEntity getShowTimeByMovieRoomTime(int movie_id, int room_id, String start_time);
 }

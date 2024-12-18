@@ -24,8 +24,8 @@ public class ConnectionPoolImpl implements ConnectionPool {
         this.url = "jdbc:mysql://localhost:3306/moviebooking_data?allowMultiQueries=true";
 
         // Xac dinh tai khoan lam viec
-        this.username = "tri_nd";
-        this.password = "@123$%65";
+        this.username = "root";
+        this.password = "";
 
         // Nap trinh dieu khien
         try {

@@ -27,8 +27,6 @@ public class AddShowTimeRS {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
         return showtimes;
     }
 }

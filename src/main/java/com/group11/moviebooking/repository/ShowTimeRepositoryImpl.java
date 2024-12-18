@@ -86,5 +86,32 @@ public class ShowTimeRepositoryImpl extends BasicImpl implements ShowTimeReposit
         }
         return showtimes;
     }
+    @Override
+    public ShowTimeEntity getShowTimeByMovieRoomTime(int movie_id, int room_id, String start_time) {
+        ShowTimeEntity showtimeEntity = new ShowTimeEntity();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM tblshowtimes WHERE movie_id = ? AND room_id = ? AND start_time = ? ;");
+
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+            pre.setInt(1, movie_id);
+            pre.setInt(2, room_id);
+            pre.setString(3, start_time);
+            ResultSet rs = pre.executeQuery();
+
+            showtimeEntity.setShowtime_id(rs.getInt("showtime_id"));
+            showtimeEntity.setMovie_id(rs.getInt("movie_id"));
+            showtimeEntity.setRoom_id(rs.getInt("room_id"));
+            showtimeEntity.setShow_date(rs.getString("show_date"));
+            showtimeEntity.setStart_time(rs.getString("start_time"));
+            showtimeEntity.setEnd_time(rs.getString("end_time"));
+            showtimeEntity.setTicket_price(rs.getInt("ticket_price"));
+            showtimeEntity.setShowtime_created_at(rs.getString("showtime_created_at"));
+            showtimeEntity.setShowtime_updated_at(rs.getString("showtime_updated_at"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return showtimeEntity;
+    }
 }
 

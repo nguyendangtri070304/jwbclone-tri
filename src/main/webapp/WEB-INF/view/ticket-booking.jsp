@@ -71,28 +71,28 @@
                 <fieldset>
                   <div id="screen-select-div">
                     <h2>Show time Selection</h2>
-                    <c:set var="movie_id" value="${movie_id}" />
                     <div class="carousel carousel-nav" data-flickity='{"contain": true, "pageDots": false }'>
                       <c:if test="${empty uniqueDates}">
                         <div class="no-dates-message">No show dates available.</div>
                       </c:if>
                       <c:if test="${not empty uniqueDates}">
                         <c:forEach items="${uniqueDates}" var="date" varStatus="status" begin="1">
-                          <div class="carousel-cell" id="${status.index}" onclick="myFunction(${status.index}, '${date}')">
+                          <button class="carousel-cell" id="${status.index}" data-movie-id="${movie_id}" onclick="myFunction(${status.index}, '${date}')">
                             <div class="date-numeric">${date}</div>
                             <div class="date-day"></div>
-                          </div>
+                          </button>
                         </c:forEach>
+
                       </c:if>
                     </div>
 
-                    <div id="showroomContainer">
-                      <!-- Đây là nơi sẽ hiển thị các phòng chiếu và thời gian -->
-                    </div>
+                    <ul class="time-ul">
+                      <!-- Các phần tử li sẽ được tạo động từ dữ liệu API -->
+                    </ul>
 
                   </div>
                   <input id="screen-next-btn" type="button" name="next-step" class="next-step" value="Continue Booking"
-                    disabled />
+                    disabled onclick="continueBooking()"/>
                 </fieldset>
                 <fieldset>
 
@@ -381,9 +381,7 @@
         </div>
       </div>
     </body>
-  <script>
-    const movie_id = '${param.movie_id}'; 
-  </script>
+
     <script>
       let prevId = "1";
 
@@ -391,14 +389,34 @@
         document.getElementById("screen-next-btn").disabled = true;
       }
 
+      let selectedDate = null;
+      let selectedTime = null;
+      let selectedRoomId = null;
+
       function timeFunction() {
         document.getElementById("screen-next-btn").disabled = false;
       }
 
-      function myFunction(id, date) {
-        // Kiểm tra giá trị của date
-        console.log("Selected date: ", date);  // Kiểm tra ngày được truyền vào hàm
+      function checkContinueButton() {
+        // Kiểm tra nếu cả ngày và giờ đều đã được chọn, kích hoạt nút "Continue"
+        if (selectedDate && selectedTime) {
+          document.getElementById("screen-next-btn").disabled = false;
+        } else {
+          document.getElementById("screen-next-btn").disabled = true;
+        }
+      }
 
+      window.onload = function() {
+        // Tự động chọn ngày đầu tiên trong danh sách khi trang được tải
+        const firstButton = document.querySelector('.carousel-cell'); // Lấy button đầu tiên trong danh sách
+        if (firstButton) {
+          const id = firstButton.id; // Lấy ID của button đầu tiên
+          const date = firstButton.querySelector('.date-numeric').innerText; // Lấy giá trị ngày từ button
+          myFunction(id, date); // Gọi hàm myFunction với ID và ngày đó
+        }
+      };
+
+      function myFunction(id, date) {
         // Thay đổi màu nền của ngày đã chọn
         if (prevId !== null) {
           document.getElementById(prevId).style.background = "rgb(243, 235, 235)";
@@ -406,48 +424,92 @@
         document.getElementById(id).style.background = "#df0e62";
         prevId = id;
 
-        // Gửi request đến controller sử dụng Fetch API
-        fetch(`/showrooms?movie_id=${movie_id}&show_date=${date}`)
-                .then(response => response.json()) // Dữ liệu trả về dưới dạng JSON
-                .then(showtimes => {
-                  let showroomContainer = document.getElementById("showroomContainer");
-                  showroomContainer.innerHTML = ""; // Xóa nội dung cũ
+        selectedDate = date; // Lưu ngày đã chọn
+        checkContinueButton(); // Kiểm tra lại trạng thái nút "Continue"
 
-                  if (showtimes.length > 0) {
-                    // Tạo HTML cho các phòng chiếu và thời gian
-                    let ul = document.createElement("ul");
-                    ul.classList.add("time-ul");
-                    showtimes.forEach(showtime => {
-                      let li = document.createElement("li");
-                      li.classList.add("time-li");
+        var form = document.createElement("form");
+        form.method = "GET";
+        form.action = "/showrooms"; // Đảm bảo rằng URL trùng với đường dẫn API của bạn
 
-                      let screenDiv = document.createElement("div");
-                      screenDiv.classList.add("screens");
-                      screenDiv.textContent = showtime.screen;
+        // Thêm tham số vào form
+        var movieIdInput = document.createElement("input");
+        movieIdInput.type = "hidden";
+        movieIdInput.name = "movie_id"; // Tên tham số phải trùng với @RequestParam trong Controller
+        movieIdInput.value = document.querySelector('[data-movie-id]').getAttribute('data-movie-id'); // Lấy movie_id từ thuộc tính data của nút
+        form.appendChild(movieIdInput);
 
-                      let timeDiv = document.createElement("div");
-                      timeDiv.classList.add("time-btn");
-                      showtime.times.forEach(time => {
-                        let btn = document.createElement("button");
-                        btn.classList.add("screen-time");
-                        btn.textContent = time;
-                        btn.onclick = () => timeFunction(); // Xử lý khi nhấn thời gian
-                        timeDiv.appendChild(btn);
-                      });
+        var dateInput = document.createElement("input");
+        dateInput.type = "hidden";
+        dateInput.name = "show_date"; // Tên tham số phải trùng với @RequestParam trong Controller
+        dateInput.value = date;
+        form.appendChild(dateInput);
 
-                      li.appendChild(screenDiv);
-                      li.appendChild(timeDiv);
-                      ul.appendChild(li);
+        // Gửi form qua fetch
+        fetch(form.action + "?" + new URLSearchParams(new FormData(form)).toString())
+                .then(response => response.json()) // Giả sử API trả về dữ liệu JSON
+                .then(data => {
+                  if (data && data.length > 0) {
+                    // Cập nhật nội dung phòng và thời gian chiếu
+                    var timeUl = document.querySelector(".time-ul");
+                    timeUl.innerHTML = ""; // Xóa nội dung cũ
+
+                    // Lặp qua các dữ liệu showtime để tạo danh sách phòng chiếu và thời gian chiếu
+                    let screens = {}; // Để nhóm thời gian chiếu theo phòng
+
+                    data.forEach(showtime => {
+                      const roomId = showtime.room_id;
+                      const startTime = showtime.start_time;
+
+                      // Tạo cấu trúc nhóm theo phòng
+                      if (!screens[roomId]) {
+                        screens[roomId] = [];
+                      }
+                      screens[roomId].push(startTime);
                     });
 
-                    showroomContainer.appendChild(ul);
-                  } else {
-                    showroomContainer.innerHTML = "<div>No showtimes available for this date.</div>";
+                    // Tạo phần tử li cho mỗi phòng chiếu và thời gian chiếu
+                    for (const roomId in screens) {
+                      let screenLi = document.createElement("li");
+                      screenLi.classList.add("time-li");
+
+                      // Tạo phần tử cho tên phòng
+                      let screenDiv = document.createElement("div");
+                      screenDiv.classList.add("screens");
+                      screenDiv.innerText = "Screen " + roomId;
+                      screenLi.appendChild(screenDiv);
+
+                      // Tạo phần tử cho danh sách thời gian chiếu
+                      let timeBtnDiv = document.createElement("div");
+                      timeBtnDiv.classList.add("time-btn");
+
+                      screens[roomId].forEach(time => {
+                        let button = document.createElement("button");
+                        button.classList.add("screen-time");
+                        button.innerText = time;
+                        button.onclick = function() {
+                          timeFunction(); // Hàm bạn cần để xử lý khi chọn thời gian
+                        };
+                        timeBtnDiv.appendChild(button);
+                      });
+
+                      screenLi.appendChild(timeBtnDiv);
+                      timeUl.appendChild(screenLi);
+                    }
                   }
                 })
                 .catch(error => {
-                  console.error("Error fetching data:", error);
+                  console.error('Error fetching showtimes:', error);
                 });
+      }
+
+      function continueBooking() {
+        const movieId = document.querySelector('[data-movie-id]').getAttribute('data-movie-id'); // Lấy movie_id
+        const selectedRoom = document.querySelector('.screens.selected').getAttribute('data-room-id'); // Lấy room_id từ phòng được chọn
+        const selectedTime = document.querySelector('.screen-time.selected').innerText; // Lấy start_time từ thời gian được chọn
+
+        // Xây dựng URL với các tham số
+        const url = `/seat?movie_id=${movieId}&room_id=${selectedRoom}&start_time=${selectedTime}`;
+        window.location.href = url; // Điều hướng tới API
       }
 
     </script>

@@ -82,18 +82,6 @@ public class ShowTimeController {
         return modelAndView;
     }
 
-    @GetMapping("/showtimes")
-    public ModelAndView showTimesByRoom(@RequestParam("movie_id") int movie_id, @RequestParam("show_date") String show_date, @RequestParam("room_id") int room_id) {
-        ModelAndView modelAndView = new ModelAndView("/ticket-booking");
-
-        // Lấy danh sách giờ chiếu cho movie_id, show_date và room_id
-        List<ShowTimeDTO> showtimes = showtimeService.getShowTimesByRoom(movie_id, show_date, room_id);
-        modelAndView.addObject("showtimes", showtimes);
-        modelAndView.addObject("movie_id", movie_id);  // Truyền lại movie_id để sử dụng tiếp
-
-        return modelAndView;
-    }
-
     @GetMapping("/showrooms")
     @ResponseBody
     public List<ShowTimeDTO> getShowrooms(@RequestParam("movie_id") int movie_id,

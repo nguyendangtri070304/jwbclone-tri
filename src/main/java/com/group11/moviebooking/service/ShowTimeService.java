@@ -57,4 +57,10 @@ public class ShowTimeService {
         return showtime;
     }
 
+    public ShowTimeDTO getShowTimeByMovieRoomTime(int movie_id, int room_id, String start_time){
+        ShowTimeEntity showtimeEntity = showtimeRepositoryImpl.getShowTimeByMovieRoomTime(movie_id, room_id, start_time);
+        ShowTimeDTO showtimeDTO = ShowTimeMapper.mapEntityToDTO(showtimeEntity);
+        return showtimeDTO;
+    }
+
 }
