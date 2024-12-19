@@ -63,4 +63,51 @@ public class SeatRepositoryImpl extends BasicImpl implements SeatRepository{
 
         return seats;
     }
+
+    @Override
+    public boolean createSeat(int room_id, String seat_row, String seat_column) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO tblseats (room_id, seat_row, seat_column, seat_status) ");
+        sql.append("VALUES(?,?,?,?) ");
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+            pre.setInt(1, room_id);
+            pre.setString(2, seat_row);
+            pre.setString(3, seat_column);
+            pre.setString(4, "BOOKED");
+
+            // Thực thi câu lệnh SQL
+            int rowsAffected = pre.executeUpdate();
+            // Commit các thay đổi vào DB
+            this.con.commit();
+            if(rowsAffected > 0){
+                System.out.println("Thanh cong !");
+            }
+
+            // Nếu số dòng bị ảnh hưởng > 0, tức là đã chèn thành công
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int getSeatId(int room_id, String seat_row, String seat_column) {
+        int seat_id = 0;
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT seat_id FROM tblseats WHERE room_id = ? AND seat_row = ? AND seat_column = ?");
+        try {
+            PreparedStatement statement  = this.con.prepareStatement(sql.toString());
+            statement.setInt(1, room_id);
+            statement.setString(2, seat_row);
+            statement.setString(3, seat_column);
+            ResultSet rs = statement .executeQuery();
+            while(rs.next()){
+                seat_id = rs.getInt("seat_id");
+            }
+            return seat_id;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

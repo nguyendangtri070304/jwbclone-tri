@@ -60,28 +60,6 @@ public class ShowTimeController {
         return modelAndView;
     }
 
-    @GetMapping()
-    public ModelAndView showRooms(@RequestParam("movie_id") int movie_id, @RequestParam("show_date") String show_date) {
-        ModelAndView modelAndView = new ModelAndView("/ticket-booking");
-        if (movie_id == -1) {
-            modelAndView.setViewName("error");
-            modelAndView.addObject("errorMessage", "Invalid movie ID.");
-            return modelAndView;
-        }
-
-        // Lấy danh sách phòng chiếu cho movie_id và show_date
-        List<ShowTimeDTO> showtimes = showtimeService.getShowTimeByMovieAndDate(movie_id, show_date);
-        Set<Integer> uniqueRooms = new LinkedHashSet<>();
-        for (ShowTimeDTO showtime : showtimes) {
-            uniqueRooms.add(showtime.getRoom_id());
-        }
-
-        modelAndView.addObject("uniqueRooms", uniqueRooms);
-        modelAndView.addObject("showtimes", showtimes);
-        modelAndView.addObject("movie_id", movie_id);  // Truyền lại movie_id để sử dụng tiếp
-        return modelAndView;
-    }
-
     @GetMapping("/showrooms")
     @ResponseBody
     public List<ShowTimeDTO> getShowrooms(@RequestParam("movie_id") int movie_id,

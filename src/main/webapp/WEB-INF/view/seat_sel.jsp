@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-	<%@page contentType="text/html" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
 	<title>Movie Ticket Booking Widget Flat Responsive Widget Template :: w3layouts</title>
 	<!-- for-mobile-apps -->
@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords"
-		content="Movie Ticket Booking Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+		  content="Movie Ticket Booking Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<link href="seat_selection/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<script src="seat_selection/js/jquery-1.11.0.min.js"></script>
 	<script src="seat_selection/js/jquery.seat-charts.js"></script>
@@ -35,24 +35,26 @@
 				<ul class="book-right">
 					<li>: Commando 3</li>
 					<li>: ${show_date}</li>
-					<li>: ${start_time} -  ${end_time}</li>
+					<li>: ${start_time}</li>
 					<li>: <span id="counter">0</span></li>
 					<li>: <b><span id="total">0<i> VND</i></span></b></li>
 				</ul>
 				<div class="clear"></div>
 				<ul id="selected-seats" class="scrollbar scrollbar1"></ul>
-			
-						
+
+
 				<div id="legend"></div>
 			</div>
 
 			<script type="text/javascript">
 				var price = ${ticket_price}; //price
 				var selectedSeats = []; // Mảng lưu các ghế đã chọn
+				var room_id = ${room_id};
+				var show_date = ${show_date};
 				$(document).ready(function () {
 					var $cart = $('#selected-seats'), //Sitting Area
-						$counter = $('#counter'), //Votes
-						$total = $('#total'); //Total money
+							$counter = $('#counter'), //Votes
+							$total = $('#total'); //Total money
 
 					var sc = $('#seat-map').seatCharts({
 						map: [ //Seating chart
@@ -85,9 +87,9 @@
 							if (this.status() == 'available') { //optional seat
 								selectedSeats.push({ row: this.settings.row + 1, column: this.settings.label });
 								$('<li>R-' + (this.settings.row + 1) + '	S-' + this.settings.label + '</li>')
-									.attr('id', 'cart-item-' + this.settings.id)
-									.data('seatId', this.settings.id)
-									.appendTo($cart);
+										.attr('id', 'cart-item-' + this.settings.id)
+										.data('seatId', this.settings.id)
+										.appendTo($cart);
 
 								$counter.text(sc.find('selected').length + 1);
 								$total.text(recalculateTotal(sc) + price);
@@ -136,7 +138,10 @@
 							// Gửi dữ liệu ghế đã chọn và tổng tiền về trang cha
 							event.source.postMessage({
 								selectedSeats: selectedSeats,
-								totalPrice: recalculateTotal(sc)
+								totalPrice: recalculateTotal(sc),
+								room_id: room_id
+								//show_date: show_date,
+								//start_time: start_time
 							}, event.origin);
 						}
 					});

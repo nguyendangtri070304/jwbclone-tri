@@ -26,4 +26,13 @@ public class SeatService {
         }
         return seatDTOs;
     }
+
+    public boolean createSeat(int room_id, String seat_row, String seat_column){
+        return this.seatRepositoryImpl.createSeat(room_id, seat_row, seat_column);
+    }
+
+    public int getSeatId(int room_id, String seat_row, String seat_column){
+        int seat_id = seatRepositoryImpl.getSeatId(room_id, seat_row, seat_column);
+        return seat_id;
+    }
 }

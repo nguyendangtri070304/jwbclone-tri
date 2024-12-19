@@ -2,7 +2,8 @@ $(document).ready(function () {
 	var currentGfgStep, nextGfgStep, previousGfgStep;
 	var opacity;
 	var current = 1;
-	var steps = $("fieldset").length;
+	//var steps = $("fieldset").length;
+	var steps = 3;
 
 	setProgressBar(current);
 
