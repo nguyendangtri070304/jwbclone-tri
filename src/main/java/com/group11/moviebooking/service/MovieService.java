@@ -122,6 +122,10 @@ public class MovieService {
 
         return resultMap;
     }
+
+    public String getMovie(int movie_id) {
+        return movieRepositoryImpl.getMovies(movie_id);
+    }
 }
 
 

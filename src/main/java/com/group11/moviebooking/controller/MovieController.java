@@ -4,6 +4,7 @@ package com.group11.moviebooking.controller;
 import com.group11.moviebooking.model.MovieDTO;
 import com.group11.moviebooking.service.MovieService;
 import com.group11.moviebooking.entity.MovieEntity;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -84,7 +85,7 @@ public class MovieController {
     }
 
     @GetMapping()
-    public ModelAndView showMovies(){
+    public ModelAndView showMovies(HttpSession session){
         ModelAndView modelAndView = new ModelAndView("/movies");
         List<MovieDTO> latestMovies = getLatestMovies();
         modelAndView.addObject("latestMovies", latestMovies);
@@ -101,6 +102,7 @@ public class MovieController {
         List<MovieDTO> popularMovies = movieService.getTopSellingMovies();
         modelAndView.addObject("popularMovies", popularMovies);
 
+        session.invalidate();
         return modelAndView;
     }
 

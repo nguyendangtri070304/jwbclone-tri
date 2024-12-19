@@ -31,7 +31,7 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public ModelAndView showDashboard(){
+    public ModelAndView showHome(){
         ModelAndView modelAndView = new ModelAndView("/index");
 
         List<MovieDTO> latestMovies = movieService.getLatestMovies();;

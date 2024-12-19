@@ -93,6 +93,8 @@
             </div>
             <input id="screen-next-btn" type="button" name="next-step" class="next-step" value="Continue Booking"
                    disabled onclick="continueBooking()"/>
+            <input type="button" name="" class="home-page-btn" value="Browse to Home Page"
+                   onclick="location.href='/home';" />
           </fieldset>
 
           <fieldset>
@@ -154,7 +156,7 @@
                 <div class="holes-top"></div>
                 <div class="title">
                   <p class="cinema">MyShowz Entertainment</p>
-                  <p class="movie-title">Movie Name</p>
+                  <p class="movie-title">${movie_title}</p>
                 </div>
                 <div class="poster">
                   <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/25240/only-god-forgives.jpg"
@@ -164,13 +166,11 @@
                   <table class="info-table ticket-table">
                     <tr>
                       <th>SCREEN</th>
-                      <th>ROW</th>
                       <th>SEAT</th>
                     </tr>
                     <tr>
                       <td class="bigger">${room_id}</td>
-                      <td class="bigger">${seat_row}</td>
-                      <td class="bigger">${seat_column}</td>
+                      <td class="bigger">${seats}</td>
                     </tr>
                   </table>
                   <table class="info-table ticket-table">
@@ -180,7 +180,7 @@
                       <th>TIME</th>
                     </tr>
                     <tr>
-                      <td>${ticket_price}</td>
+                      <td>${totalPrice}</td>
                       <td>${show_date}</td>
                       <td>${start_time}</td>
                     </tr>
@@ -552,11 +552,6 @@
       body: JSON.stringify(data),
     })
             .then(response => {
-              if (response.ok) {
-                alert("Payment confirmed. Details sent to /booking.");
-              } else {
-                alert("Failed to confirm payment. Please try again.");
-              }
             })
             .catch(error => {
               console.error('Error:', error);

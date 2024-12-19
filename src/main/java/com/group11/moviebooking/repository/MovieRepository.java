@@ -11,6 +11,7 @@ public interface MovieRepository {
 
     List<MovieEntity> getMovies(MovieEntity similar, int at, byte total);
     List<MovieEntity> getMovies(String movie_title);
+    String getMovies(int movie_id);
     ArrayList<MovieEntity> getLatestMovies();
     ArrayList<MovieEntity> getTopMovieByRating();
     ArrayList<MovieEntity> getMoviesForAdults();

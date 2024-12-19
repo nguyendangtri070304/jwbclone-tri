@@ -63,6 +63,8 @@ public class SeatController {
         session.setAttribute("room_id", room_id);
         session.setAttribute("movie_id", movie_id);
         session.setAttribute("ticket_price", showtime.getTicket_price());
+        session.setAttribute("start_time", start_time);
+        session.setAttribute("show_date", showtime.getShow_date());
 
 
         System.out.print("movie id: " + movie_id);
@@ -76,6 +78,7 @@ public class SeatController {
         List<Map<String, Object>> selectedSeats = (List<Map<String, Object>>) data.get("selectedSeats");
         Integer totalPrice = (Integer) data.get("totalPrice");
         Integer room_id = (Integer) data.get("room_id");
+        String seats = "";
 
         // Xử lý các ghế đã chọn và giá trị tổng
         System.out.println("Room ID: " + room_id);
@@ -86,6 +89,7 @@ public class SeatController {
         for (Map<String, Object> seatData : selectedSeats) {
             String seat_row = String.valueOf(seatData.get("row"));
             String seat_column = String.valueOf(seatData.get("column"));
+            seats = seats + "R" + seat_row + '-' + "S" + seat_column + "  ";
 
             // Gọi phương thức createSeat của SeatService để lưu ghế vào cơ sở dữ liệu
             boolean isCreated = seatService.createSeat(room_id, seat_row, seat_column);
@@ -99,6 +103,7 @@ public class SeatController {
         session.setAttribute("selectedSeats", selectedSeats);
         session.setAttribute("totalPrice", totalPrice);
         session.setAttribute("room_id", room_id);
+        session.setAttribute("seats", seats);
 
         // Trả về phản hồi thành công
         return ResponseEntity.ok("Seats selected: " + selectedSeats + ", Total price: " + totalPrice);

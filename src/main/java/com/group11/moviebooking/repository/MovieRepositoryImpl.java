@@ -121,6 +121,25 @@ public class MovieRepositoryImpl extends BasicImpl implements MovieRepository {
         return movies;
     }
 
+    @Override
+    public String getMovies(int movie_id) {
+        String movie_title = "";
+        String sql = "SELECT movie_title FROM tblmovies WHERE movie_id = ?";
+        try {
+            PreparedStatement pre = this.con.prepareStatement(sql.toString());
+            pre.setInt(1, movie_id);
+            ResultSet rs = pre.executeQuery();
+
+            while (rs.next()) {
+                movie_title = rs.getString("movie_title");
+            }
+            return movie_title;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public ArrayList<MovieEntity> getLatestMovies() {
 
         ArrayList<MovieEntity> movies = new ArrayList<>();
