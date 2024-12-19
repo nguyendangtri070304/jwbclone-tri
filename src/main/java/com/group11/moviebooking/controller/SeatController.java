@@ -7,13 +7,13 @@ import com.group11.moviebooking.model.SeatDTO;
 import com.group11.moviebooking.model.ShowTimeDTO;
 import com.group11.moviebooking.service.SeatService;
 import com.group11.moviebooking.service.ShowTimeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class SeatController {
@@ -59,13 +59,16 @@ public class SeatController {
         return modelAndView;
     }
 
-    @GetMapping("/test")
-    @ResponseBody
-    public List<SeatDTO> seats(@RequestParam("movie_id") int movie_id,
-                               @RequestParam("room_id") int room_id,
-                               @RequestParam("start_time") String start_time) {
-        ShowTimeDTO showtime = showtimeService.getShowTimeByMovieRoomTime(movie_id, room_id, start_time);
-        List<SeatDTO> jsonSoldSeats = seatService.getSoldSeats(movie_id, showtime.getShow_date(), showtime.getStart_time(), showtime.getEnd_time());
-        return jsonSoldSeats;
+    @PostMapping("/your-controller-endpoint")
+    public ResponseEntity<String> handleSeatSelection(@RequestBody Map<String, Object> data) {
+        List<Map<String, Object>> selectedSeats = (List<Map<String, Object>>) data.get("selectedSeats");
+        Integer totalPrice = (Integer) data.get("totalPrice");
+
+        // Xử lý các ghế đã chọn và giá trị tổng
+        System.out.println("Selected seats: " + selectedSeats);
+        System.out.println("Total price: " + totalPrice);
+
+        // Trả về phản hồi thành công
+        return ResponseEntity.ok("Seats selected: " + selectedSeats + ", Total price: " + totalPrice);
     }
 }

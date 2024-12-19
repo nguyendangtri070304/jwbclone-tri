@@ -48,6 +48,7 @@
 
 			<script type="text/javascript">
 				var price = ${ticket_price}; //price
+				var selectedSeats = []; // Mảng lưu các ghế đã chọn
 				$(document).ready(function () {
 					var $cart = $('#selected-seats'), //Sitting Area
 						$counter = $('#counter'), //Votes
@@ -82,6 +83,7 @@
 						},
 						click: function () { //Click event
 							if (this.status() == 'available') { //optional seat
+								selectedSeats.push({ row: this.settings.row + 1, column: this.settings.label });
 								$('<li>R-' + (this.settings.row + 1) + '	S-' + this.settings.label + '</li>')
 									.attr('id', 'cart-item-' + this.settings.id)
 									.data('seatId', this.settings.id)
@@ -89,9 +91,13 @@
 
 								$counter.text(sc.find('selected').length + 1);
 								$total.text(recalculateTotal(sc) + price);
-
+								console.log("Selected seats:", selectedSeats);
 								return 'selected';
 							} else if (this.status() == 'selected') { //Checked
+								// Loại bỏ ghế khỏi danh sách đã chọn
+								selectedSeats = selectedSeats.filter(function (seat) {
+									return seat.row !== (this.settings.row + 1) || seat.column !== this.settings.label;
+								}.bind(this));
 								//Update Number
 								$counter.text(sc.find('selected').length - 1);
 								//update totalnum
@@ -100,6 +106,7 @@
 								//Delete reservation
 								$('#cart-item-' + this.settings.id).remove();
 								//optional
+								console.log("Selected seats after removal:", selectedSeats); // Log sau khi loại bỏ
 								return 'available';
 							} else if (this.status() == 'unavailable') { //sold
 								return 'unavailable';
@@ -123,8 +130,19 @@
 						console.log("Marking seat as unavailable:", seatId); // In ra ID ghế
 						sc.get([seatId]).status('unavailable');
 					});
+					// Lắng nghe yêu cầu từ trang cha
+					window.addEventListener('message', function(event) {
+						if (event.data.action === 'getSelectedSeats') {
+							// Gửi dữ liệu ghế đã chọn và tổng tiền về trang cha
+							event.source.postMessage({
+								selectedSeats: selectedSeats,
+								totalPrice: recalculateTotal(sc)
+							}, event.origin);
+						}
+					});
 
 				});
+
 				//sum total money
 				function recalculateTotal(sc) {
 					var total = 0;

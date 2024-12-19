@@ -94,15 +94,15 @@
                   <input id="screen-next-btn" type="button" name="next-step" class="next-step" value="Continue Booking"
                     disabled onclick="continueBooking()"/>
                 </fieldset>
-                <fieldset>
 
+                <fieldset>
                   <div>
                     <iframe id="seat-sel-iframe"
                       style="  box-shadow: 0 14px 12px 0 var(--theme-border), 0 10px 50px 0 var(--theme-border); width: 800px; height: 550px; display: block; margin-left: auto; margin-right: auto;"
                       src=""></iframe>
                   </div>
                   <br>
-                  <input type="button" name="next-step" class="next-step" value="Proceed to Payment" />
+                  <input type="button" name="next-step" class="next-step" value="Proceed to Payment" id ="proceed-button" />
                   <input type="button" name="previous-step" class="previous-step" value="Back" />
                 </fieldset>
                 <fieldset>
@@ -513,16 +513,50 @@
         iframe.src = url;
       }
 
+      // Lắng nghe sự kiện click vào nút "Proceed to Payment"
+      document.getElementById("proceed-button").addEventListener("click", function() {
+        const iframe = document.getElementById("seat-sel-iframe");
+
+        // Kiểm tra xem iframe có nội dung không
+        if (iframe && iframe.contentWindow) {
+          // Lấy dữ liệu từ iframe thông qua postMessage
+          iframe.contentWindow.postMessage({ action: 'getSelectedSeats' }, '*');
+        }
+      });
+
+      // Lắng nghe dữ liệu từ iframe
+      window.addEventListener('message', function(event) {
+        // Kiểm tra nguồn gửi dữ liệu để đảm bảo an toàn
+        // if (event.origin === 'https://your-iframe-source.com') {
+        const data = event.data;
+        if (data.selectedSeats && data.totalPrice !== undefined) {
+          // Gửi dữ liệu lên backend (Spring Boot controller)
+          fetch('/your-controller-endpoint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              selectedSeats: data.selectedSeats,
+              totalPrice: data.totalPrice
+            })
+          })
+                  .then(response => response.json())
+                  .then(result => {
+                    console.log('Success:', result);
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
+        }
+      });
     </script>
-
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 <script src="assets/js/easyResponsiveTabs.js"></script>
-
     <script src="https://npmcdn.com/flickity@2/dist/flickity.pkgd.js"></script>
     <script type="text/javascript" src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js'>
     </script>
-    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
     <script src="assets/js/theme-change.js"></script>
-
     <script type="text/javascript" src="assets/js/ticket-booking.js"></script>
 
 </html>
