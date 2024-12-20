@@ -2,7 +2,9 @@
 <html lang="en">
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!--tri dep trai-->
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -11,14 +13,15 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Logo -->
+    <link href="assets/images/logo.png" rel="icon"/>
+    <link href="assets/images/logo.png" rel="apple-touch-icon"/>
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-          rel="stylesheet">
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+            rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,21 +41,22 @@
 
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
-
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/home" class="logo d-flex align-items-center">
-            <img src="" alt="">
+        <a href="/home" class="logo d-flex align-items-center navbar-brand">
+            <img src="./assets/img/logo-haui-size.png" alt="Your logo" title="Your logo"
+                 style="height: 35px"/>
             <span class="d-none d-lg-block">Myshowz</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+    </div>
+    <!-- End Logo -->
 
-<%--    <div class="search-bar">--%>
-<%--        <form class="search-form d-flex align-items-center" method="POST" action="#">--%>
-<%--            <input type="text" name="query" placeholder="Tìm kiếm" title="Nhập vào từ khóa tìm kiếm">--%>
-<%--            <button type="submit" title="Search"><i class="bi bi-search"></i></button>--%>
-<%--        </form>--%>
-<%--    </div><!-- End Search Bar -->--%>
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Tìm kiếm" title="Nhập vào từ khóa tìm kiếm">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -159,7 +163,8 @@
                             <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
                             <div>
                                 <h4>Maria Hudson</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...
+                                </p>
                                 <p>4 hrs. ago</p>
                             </div>
                         </a>
@@ -173,7 +178,8 @@
                             <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
                             <div>
                                 <h4>Anna Nelson</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...
+                                </p>
                                 <p>6 hrs. ago</p>
                             </div>
                         </a>
@@ -187,7 +193,8 @@
                             <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
                             <div>
                                 <h4>David Muldon</h4>
-                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...
+                                </p>
                                 <p>8 hrs. ago</p>
                             </div>
                         </a>
@@ -206,14 +213,15 @@
 
             <li class="nav-item dropdown pe-3">
 
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">Trí NĐ</span>
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                   data-bs-toggle="dropdown">
+                    <img src="assets/images/logo.png" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">Group 11</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6>Group 11</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -221,7 +229,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="profile">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -231,7 +239,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="/profile">
                             <i class="bi bi-gear"></i>
                             <span>Account Settings</span>
                         </a>
@@ -241,7 +249,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                        <a class="dropdown-item d-flex align-items-center" href="/">
                             <i class="bi bi-question-circle"></i>
                             <span>Need Help?</span>
                         </a>
@@ -251,7 +259,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="/sign">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -267,115 +275,101 @@
 
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
-
     <ul class="sidebar-nav" id="sidebar-nav">
-
         <!-- Dashboard -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/home">
+            <a class="nav-link" href="/dashboard">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
-        </li><!-- End Dashboard Nav -->
-
+        </li>
+        <!-- End Dashboard Nav -->
         <!-- Movies -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/movies">
+            <a class="nav-link collapsed" href="/Movies">
                 <i class="bi bi-film"></i>
                 <span>Movies</span>
             </a>
-        </li><!-- End Movies Nav -->
-
+        </li>
+        <!-- End Movies Nav -->
         <!-- Showtimes -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="showtimes.html">
                 <i class="bi bi-calendar"></i>
                 <span>Showtimes</span>
             </a>
-        </li><!-- End Showtimes Nav -->
-
+        </li>
+        <!-- End Showtimes Nav -->
         <!-- Tickets -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="e-ticket">
                 <i class="bi bi-ticket-perforated"></i>
                 <span>Tickets</span>
             </a>
-        </li><!-- End Tickets Nav -->
-
+        </li>
+        <!-- End Tickets Nav -->
         <!-- Customers -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="customers.html">
+            <a class="nav-link collapsed" href="/Customers">
                 <i class="bi bi-people"></i>
                 <span>Customers</span>
             </a>
-        </li><!-- End Customers Nav -->
-
+        </li>
+        <!-- End Customers Nav -->
         <!-- Employees -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="employees.html">
                 <i class="bi bi-person-badge"></i>
                 <span>Employees</span>
             </a>
-        </li><!-- End Employees Nav -->
-
+        </li>
+        <!-- End Employees Nav -->
         <!-- Pages Section -->
         <li class="nav-heading">Pages</li>
-
         <!-- Profile -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="/profile">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
-        </li><!-- End Profile Page Nav -->
-
+        </li>
+        <!-- End Profile Page Nav -->
         <!-- F.A.Q -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
                 <span>F.A.Q</span>
             </a>
-        </li><!-- End F.A.Q Page Nav -->
-
+        </li>
+        <!-- End F.A.Q Page Nav -->
         <!-- Contact -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="/Contact_Us">
                 <i class="bi bi-envelope"></i>
                 <span>Contact</span>
             </a>
-        </li><!-- End Contact Page Nav -->
-
+        </li>
+        <!-- End Contact Page Nav -->
         <!-- Login -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="/sign">
                 <i class="bi bi-box-arrow-in-right"></i>
                 <span>Login</span>
             </a>
-        </li><!-- End Login Page Nav -->
-
+        </li>
+        <!-- End Login Page Nav -->
         <!-- Error 404 -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-error-404.html">
                 <i class="bi bi-dash-circle"></i>
                 <span>Error 404</span>
             </a>
-        </li><!-- End Error 404 Page Nav -->
-
-        <!-- Blank Page -->
-        <li class="nav-item">
-            <a class="nav-link" href="/dashboard">
-                <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
-
+        </li>
+        <!-- End Error 404 Page Nav -->
     </ul>
-
-</aside><!-- End Sidebar -->
-
-
+</aside>
+<!-- End Sidebar -->
 <main id="main" class="main">
-
     <div class="pagetitle">
         <h1>Dashboard</h1>
         <nav>
@@ -385,32 +379,26 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-
     <section class="section dashboard">
         <div class="row">
-
             <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
-
                     <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
-
                             <div class="card-body">
                                 <h5 class="card-title">Tickets Sold<span></span></h5>
-
                                 <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
                                         <h6>${total_tickets_sold}</h6>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div><!-- End Sales Card -->
                     <!-- Revenue Card -->
@@ -421,7 +409,8 @@
                                 <h5 class="card-title">Revenue <span></span></h5>
 
                                 <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
@@ -433,29 +422,24 @@
 
                         </div>
                     </div><!-- End Revenue Card -->
-
                     <!-- Customers Card -->
                     <div class="col-xxl-4 col-xl-12">
-
                         <div class="card info-card customers-card">
-
                             <div class="card-body">
                                 <h5 class="card-title">Customers <span></span></h5>
 
                                 <div class="d-flex align-items-center">
-                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <div
+                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>20</h6>
+                                        <h6>${customers_size}</h6>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div><!-- End Customers Card -->
-
                     <!-- Reports -->
                     <div class="col-12">
                         <div class="card">
@@ -468,7 +452,6 @@
                                 <%
                                     System.out.println("Chart Data in JSP: " + request.getAttribute("chart"));
                                 %>
-
                                 <script>
                                     const chartData = ${chart};
                                     const categories = [];
@@ -572,10 +555,14 @@
 
                                     <c:forEach items="${topselling}" var="movie">
                                         <tr>
-                                            <th scope="row"><a href="#"><img src="${movie.movie_poster_url}" alt="${movie.movie_title}"
-                                                                             title="${movie.movie_title}"
-                                                                             style="width: 50px;"></a></th>
-                                            <td><a href="#" class="text-primary fw-bold">${movie.movie_title}</a></td>
+                                            <th scope="row"><a href="#"><img
+                                                    src="${movie.movie_poster_url}"
+                                                    alt="${movie.movie_title}"
+                                                    title="${movie.movie_title}"
+                                                    style="width: 50px;"></a></th>
+                                            <td><a href="#"
+                                                   class="text-primary fw-bold">${movie.movie_title}</a>
+                                            </td>
                                             <td>${movie.ticket_price}</td>
                                             <td class="fw-bold">${movie.total_tickets_sold}</td>
                                             <td>${movie.revenue}</td>
@@ -584,8 +571,8 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                            </div>
 
+                            </div>
 
                         </div>
                     </div><!-- End Top Selling Movies -->
@@ -597,7 +584,7 @@
             <!-- Right side columns -->
             <div class="col-lg-4">
                 <!-- Recent Activity -->
-            <!-- End Recent Activity -->
+                <!-- End Recent Activity -->
 
 
                 <!-- News & Updates - Movie Dashboard -->
@@ -606,44 +593,14 @@
                         <h5 class="card-title">News &amp; Updates <span>| Movies</span></h5>
 
                         <div class="news">
-                            <!-- Post Item -->
-                            <div class="post-item clearfix">
-                                <img src="assets/images/new-i1000.jpeg" alt="Upcoming Marvel Movie">
-                                <h4><a href="#">Upcoming Marvel Movie Announced</a></h4>
-                                <p>Marvel Studios has officially announced the release of "Avengers: New Dawn"...</p>
-                            </div>
-
-                            <!-- Post Item -->
-                            <div class="post-item clearfix">
-                                <img src="assets/images/s-l400.jpeg" alt="Box Office Record">
-                                <h4><a href="#">"Avatar: The Way of Water" Breaks Box Office Records</a></h4>
-                                <p>The movie has grossed over $2 billion worldwide, making it one of the
-                                    highest-grossing films...</p>
-                            </div>
-
-                            <!-- Post Item -->
-                            <div class="post-item clearfix">
-                                <img src="assets/images/new-i1100.jpeg" alt="Cinema Offers">
-                                <h4><a href="#">Special Discount on Tickets This Week</a></h4>
-                                <p>Enjoy a 20% discount on all movies this weekend at our cinema. Don’t miss out!</p>
-                            </div>
-
-                            <!-- Post Item -->
-                            <div class="post-item clearfix">
-                                <img src="assets/images/new-i1200.jpeg" alt="New Movie Trailer">
-                                <h4><a href="#">New Trailer for "The Batman 2" Released</a></h4>
-                                <p>The much-anticipated sequel to "The Batman" has released its first trailer, teasing
-                                    fans with...</p>
-                            </div>
-
-                            <!-- Post Item -->
-                            <div class="post-item clearfix">
-                                <img src="assets/images/new-i1300.webp" alt="Top Movie Reviews">
-                                <h4><a href="#">Top 5 Must-Watch Movies This Month</a></h4>
-                                <p>Check out our curated list of the best movies to watch this November, including "The
-                                    Marvels"...</p>
-                            </div>
-
+                            <c:forEach var="NewMovie" items="${NewMovies}">
+                                <!-- Post Item -->
+                                <div class="post-item clearfix">
+                                    <img src="assets/images/banner/${NewMovie.movie_poster_url}" alt="Upcoming Marvel Movie">
+                                    <h4><a href="#">${NewMovie.movie_title}</a></h4>
+                                    <p>${NewMovie.movie_description}</p>
+                                </div>
+                            </c:forEach>
                         </div><!-- End news items -->
 
                     </div>

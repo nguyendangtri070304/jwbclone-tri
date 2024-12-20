@@ -18,7 +18,6 @@ public class BasicImpl implements Basic {
     public BasicImpl(String objectName) {
         // Xac dinh doi tuong lam viec
         this.objectName = objectName;
-
         // Xin ket noi
         try {
             this.con = this.cp.getConnection(this.objectName);

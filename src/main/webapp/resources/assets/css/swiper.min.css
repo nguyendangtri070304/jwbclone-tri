@@ -612,7 +612,7 @@ button.swiper-pagination-bullet {
 .swiper-container {
     width: 100%;
     padding-top: 50px;
-    padding-bottom: 200px;
+    padding-bottom: 50px;
     /* background-color: #8a404000; */
     box-shadow: rgb(0, 0, 0);
     /* background: linear-gradient(110deg, #708491 60%, #5c5b55 60%); */
