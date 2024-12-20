@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<head>
-	<title>Movie Ticket Booking Widget Flat Responsive Widget Template :: w3layouts</title>
-	<!-- for-mobile-apps -->
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords"
-		  content="Movie Ticket Booking Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-	<link href="seat_selection/css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<script src="seat_selection/js/jquery-1.11.0.min.js"></script>
-	<script src="seat_selection/js/jquery.seat-charts.js"></script>
-</head>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+		<head>
+			<title>Movie Ticket Booking Widget Flat Responsive Widget Template :: w3layouts</title>
+			<!-- Logo -->
+			<link href="assets/images/logo.png" rel="icon" />
+			<link href="assets/images/logo.png" rel="apple-touch-icon" />
+			<!-- for-mobile-apps -->
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+			<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+			<meta name="keywords"
+				content="Movie Ticket Booking Widget Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+			<link href="seat_selection/css/style.css" rel="stylesheet" type="text/css" media="all" />
+			<script src="seat_selection/js/jquery-1.11.0.min.js"></script>
+			<script src="seat_selection/js/jquery.seat-charts.js"></script>
+		</head>
 
 <body>
 <div class="content">

@@ -2,20 +2,17 @@ package com.group11.moviebooking.service;
 
 import com.group11.moviebooking.repository.AdminRepositoryImpl;
 import com.group11.moviebooking.entity.AdminEntity;
+import com.group11.moviebooking.repository.AdminRepositoryImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AdminService {
-    private AdminRepositoryImpl adminRepositoryImpl;
+    private final AdminRepositoryImpl adminRepositoryImpl;
     public AdminService(AdminRepositoryImpl adminRepositoryImpl) {
         this.adminRepositoryImpl = adminRepositoryImpl;
     }
-
-    public String sql = "use moviebooking_data;"
-            + "INSERT INTO tbladmins(admin_name, admin_email, admin_password) "
-            + "VALUES ('hoinguyen', 'hoinguyen17@gmail.com', md5('ditmemay'));";
 
     // Admin-related methods
     public boolean add2(String sql) {

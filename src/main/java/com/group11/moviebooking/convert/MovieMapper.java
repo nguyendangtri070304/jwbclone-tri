@@ -16,7 +16,7 @@ public class MovieMapper {
         movieDTO.setMovie_rating(movieEntity.getMovie_rating());
         movieDTO.setMovie_duration(movieEntity.getMovie_duration());
         movieDTO.setMovie_trailer_url(movieEntity.getMovie_trailer_url());
-        movieDTO.setMovie_release_date(movieEntity.getMovie_realease_date());
+        movieDTO.setMovie_release_date(movieEntity.getMovie_release_date());
         movieDTO.setMovie_main_actor(movieEntity.getMovie_main_actor());
         movieDTO.setMovie_director(movieEntity.getMovie_director());
         movieDTO.setMovie_studio(movieEntity.getMovie_studio());

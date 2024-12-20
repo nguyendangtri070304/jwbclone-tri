@@ -74,7 +74,7 @@ public class MovieDTO {
         this.movie_trailer_url = movie_trailer_url;
     }
 
-    // Getter and Setter for movie_realease_date
+    // Getter and Setter for movie_release_date
     public String getMovie_release_date() {
         return movie_release_date;
     }
@@ -177,5 +177,29 @@ public class MovieDTO {
 
     public void setRevenue(float revenue) {
         this.revenue = revenue;
+    }
+
+    @Override
+    public String toString() {
+        return "MovieDTO{" +
+                "movie_id=" + movie_id +
+                ", movie_title='" + movie_title + '\'' +
+                ", movie_description='" + movie_description + '\'' +
+                ", movie_rating=" + movie_rating +
+                ", movie_duration=" + movie_duration +
+                ", movie_trailer_url='" + movie_trailer_url + '\'' +
+                ", movie_release_date='" + movie_release_date + '\'' +
+                ", movie_created_at='" + movie_created_at + '\'' +
+                ", movie_main_actor='" + movie_main_actor + '\'' +
+                ", movie_director='" + movie_director + '\'' +
+                ", movie_studio='" + movie_studio + '\'' +
+                ", movie_country='" + movie_country + '\'' +
+                ", movie_genre='" + movie_genre + '\'' +
+                ", movie_for_age=" + movie_for_age +
+                ", movie_poster_url='" + movie_poster_url + '\'' +
+                ", total_tickets_sold=" + total_tickets_sold +
+                ", ticket_price=" + ticket_price +
+                ", revenue=" + revenue +
+                "}\n";
     }
 }

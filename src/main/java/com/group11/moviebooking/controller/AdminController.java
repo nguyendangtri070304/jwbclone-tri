@@ -16,7 +16,6 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String getadmin() {
-        System.out.println(this.adminService.add2(this.adminService.sql));
         return "redirect:/dashboard";
     }
 

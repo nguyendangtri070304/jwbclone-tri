@@ -5,9 +5,9 @@ public class SeatEntity {
     private int room_id;
     private String seat_row;
     private String seat_column;
-    private SeatStatus seat_status = SeatStatus.AVAILABLE;
+    private final SeatStatus seat_status = SeatStatus.AVAILABLE;
 
-    public enum SeatStatus { AVAILABLE, RESERVED, BOOKED}
+    public enum SeatStatus {AVAILABLE, RESERVED, BOOKED}
 
     // Getter và Setter
     public int getSeat_id() {
