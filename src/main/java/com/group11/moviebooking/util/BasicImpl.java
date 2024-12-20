@@ -18,11 +18,9 @@ public class BasicImpl implements Basic {
     public BasicImpl(String objectName) {
         // Xac dinh doi tuong lam viec
         this.objectName = objectName;
-
         // Xin ket noi
         try {
             this.con = this.cp.getConnection(this.objectName);
-
             // Kiem tra che do thuc thi cua ket noi
             if (this.con.getAutoCommit()) {
                 this.con.setAutoCommit(false); // Huy che do thuc thi tu dong

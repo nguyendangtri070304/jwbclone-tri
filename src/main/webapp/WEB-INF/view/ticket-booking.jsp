@@ -1,60 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ticket Booking</title>
-  <link rel="stylesheet" type="text/css" href="assets/css/style-starter.css">
-  <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/progress.css">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Ticket Booking</title>
+      <!-- Logo -->
+      <link href="assets/images/logo.png" rel="icon" />
+      <link href="assets/images/logo.png" rel="apple-touch-icon" />
+      <link rel="stylesheet" type="text/css" href="assets/css/style-starter.css">
+      <link rel="stylesheet" href="https://npmcdn.com/flickity@2/dist/flickity.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/progress.css">
 
-  <link rel="stylesheet" type="text/css" href="assets/css/ticket-booking.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/ticket-booking.css">
 
-  <!-- ..............For progress-bar............... -->
-  <link rel="stylesheet" type="text/css" href="assets/css/e-ticket.css">
+      <!-- ..............For progress-bar............... -->
+      <link rel="stylesheet" type="text/css" href="assets/css/e-ticket.css">
 
-  <link rel="stylesheet" type="text/css" href="assets/css/payment.css" />
-  <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700" rel="stylesheet">
-</head>
+      <link rel="stylesheet" type="text/css" href="assets/css/payment.css" />
+      <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700" rel="stylesheet">
+    </head>
 
-<body>
-<header id="site-header" class="w3l-header fixed-top">
+    <body>
+      <header id="site-header" class="w3l-header fixed-top">
 
-  <!--/nav-->
-  <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
-    <div class="container">
-      <h1><a class="navbar-brand" href="/home"><span class="fa fa-play icon-log" aria-hidden="true"></span>
-        MyShowz </a></h1>
+        <!--/nav-->
+        <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
+          <div class="container">
+            <h1><a class="navbar-brand" href="/home"><span class="fa fa-play icon-log" aria-hidden="true"></span>
+                MyShowz </a></h1>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
 
-      <div class="Login_SignUp" id="login_s">
-        <!-- style="font-size: 2rem ; display: inline-block; position: relative;" -->
-        <!-- <li class="nav-item"> -->
-        <a class="nav-link" href="/sign"><i class="fa fa-user-circle-o"></i></a>
-        <!-- </li> -->
-      </div>
-      <!-- toggle switch for light and dark theme -->
-      <div class="mobile-position">
-        <nav class="navigation">
-          <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-              <input type="checkbox" id="checkbox">
-              <div class="mode-container">
-                <i class="gg-sun"></i>
-                <i class="gg-moon"></i>
-              </div>
-            </label>
+            <div class="Login_SignUp" id="login_s">
+              <!-- style="font-size: 2rem ; display: inline-block; position: relative;" -->
+              <!-- <li class="nav-item"> -->
+              <a class="nav-link" href="/sign"><i class="fa fa-user-circle-o"></i></a>
+              <!-- </li> -->
+            </div>
+            <!-- toggle switch for light and dark theme -->
+            <div class="mobile-position">
+              <nav class="navigation">
+                <div class="theme-switch-wrapper">
+                  <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox">
+                    <div class="mode-container">
+                      <i class="gg-sun"></i>
+                      <i class="gg-moon"></i>
+                    </div>
+                  </label>
+                </div>
+              </nav>
+            </div>
           </div>
         </nav>
-      </div>
-    </div>
-  </nav>
-</header>
+      </header>
 
 <div class="container" id="progress-container-id">
   <div class="row">

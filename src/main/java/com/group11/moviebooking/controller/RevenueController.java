@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 public class RevenueController {
-    private RevenueService revenueService;
+    private final RevenueService revenueService;
 
     public RevenueController(RevenueService revenueService) { this.revenueService = revenueService; }
 

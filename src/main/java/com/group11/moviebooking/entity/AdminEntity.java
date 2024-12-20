@@ -67,7 +67,7 @@ public class AdminEntity {
 
     @Override
     public String toString() {
-        return "AdminEntity{" +
+        return "AdminEntity{\n" +
                 "admin_id=" + admin_id +
                 ", admin_name='" + admin_name + '\'' +
                 ", admin_email='" + admin_email + '\'' +
@@ -75,7 +75,6 @@ public class AdminEntity {
                 ", admin_phone='" + admin_phone + '\'' +
                 ", admins_created_at='" + admins_created_at + '\'' +
                 ", admins_is_active=" + admins_is_active +
-                '}';
+                "\n}";
     }
 }
-

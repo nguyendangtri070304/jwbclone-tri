@@ -5,11 +5,15 @@ public class CustomerDTO {
     private String customer_name;
     private String customer_email;
     private String customer_password;
+    private String customer_Confirm_password;
     private String customer_phone;
-    private String customer_date_of_birth;
+    private String customer_date;
+    private String customer_month;
+    private String customer_year;
     private String customer_gender;
     private String customer_created_at;
     private byte customer_is_active;
+    private String customer_date_of_birth;
 
     public long getCustomer_id() {
         return customer_id;
@@ -43,6 +47,14 @@ public class CustomerDTO {
         this.customer_password = customer_password;
     }
 
+    public String getCustomer_Confirm_password() {
+        return customer_Confirm_password;
+    }
+
+    public void setCustomer_Confirm_password(String customer_Confirm_password) {
+        this.customer_Confirm_password = customer_Confirm_password;
+    }
+
     public String getCustomer_phone() {
         return customer_phone;
     }
@@ -52,6 +64,7 @@ public class CustomerDTO {
     }
 
     public String getCustomer_date_of_birth() {
+
         return customer_date_of_birth;
     }
 
@@ -83,13 +96,38 @@ public class CustomerDTO {
         this.customer_is_active = customer_is_active;
     }
 
+    public String getCustomer_date() {
+        return customer_date;
+    }
+
+    public void setCustomer_date(String customer_date) {
+        this.customer_date = customer_date;
+    }
+
+    public String getCustomer_month() {
+        return customer_month;
+    }
+
+    public void setCustomer_month(String customer_month) {
+        this.customer_month = customer_month;
+    }
+
+    public String getCustomer_year() {
+        return customer_year;
+    }
+
+    public void setCustomer_year(String customer_year) {
+        this.customer_year = customer_year;
+    }
+
     @Override
     public String toString() {
-        return "CustomerEntity{" +
+        return "CustomerDTO{" +
                 "customer_id=" + customer_id +
                 ", customer_name='" + customer_name + '\'' +
                 ", customer_email='" + customer_email + '\'' +
                 ", customer_password='" + customer_password + '\'' +
+                ", customer_Confirm_password='" + customer_Confirm_password + '\'' +
                 ", customer_phone='" + customer_phone + '\'' +
                 ", customer_date_of_birth='" + customer_date_of_birth + '\'' +
                 ", customer_gender='" + customer_gender + '\'' +
