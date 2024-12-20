@@ -188,13 +188,12 @@
                                                         <p>${movie.movie_studio}</p>
                                                     </div>
                                                     <div class="bookbtn">
-                                                        <button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+                                                        <button type="button" class="btn btn-success" onclick="location.href='/ticket-booking?movie_id=${movie.movie_id}';">Book</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- modal end -->
-                                            <span class="fa fa-play video-icon" aria-hidden="true"></span>
                                     </div>
                                 </div>
                             </c:forEach>
@@ -217,10 +216,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="owl-three owl-carousel owl-theme">
-                            <c:forEach items="${latestMovies}" var="movie" begin="0" end="3">
+                        <div class="w3l-populohny-grids">
+                            <c:forEach var="movie" items="${latestMovies}" begin="0" end="3">
                                 <div class="item vhny-grid">
-                                    <div class="box16 mb-0">
+                                    <div class="box16">
                                         <figure>
                                             <img class="img-fluid" src="${movie.movie_poster_url}" alt="">
                                         </figure>
@@ -257,7 +256,7 @@
                                                         <p>${movie.movie_studio}</p>
                                                     </div>
                                                     <div class="bookbtn">
-                                                        <button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+                                                        <button type="button" class="btn btn-success" onclick="location.href='/ticket-booking?movie_id=${movie.movie_id}';">Book</button>
                                                     </div>
                                                 </div>
                                             </div>

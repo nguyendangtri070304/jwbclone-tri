@@ -36,7 +36,6 @@ public class BookingController {
     }
 
     @PostMapping("/booking")
-    @ResponseBody
     public ModelAndView handleBooking(@RequestBody Map<String, String> payload, HttpSession session) {
         ModelAndView modelAndView = new ModelAndView("/ticket-booking");
         String name = payload.get("name");
@@ -54,7 +53,6 @@ public class BookingController {
         String seats = (String) session.getAttribute("seats");
 
         String movie_title = movieService.getMovie(movie_id);
-        session.setAttribute("movie_title", movie_title);
 
         CustomerEntity customer = customerService.getCustomerByEmail(email);
 
@@ -80,10 +78,21 @@ public class BookingController {
         modelAndView.addObject("show_date", show_date);
         modelAndView.addObject("start_time", start_time);
 
+        session.setAttribute("movie_title", movie_title);
+        session.setAttribute("totalPrice", totalPrice);
+        session.setAttribute("seats", seats);
+        session.setAttribute("show_date", show_date);
+        session.setAttribute("start_time", start_time);
+
+        System.out.println("Session ID: " + session.getId());
+        System.out.println("Movie Title from session: " + session.getAttribute("movie_title"));
+
         System.out.println("Movie Title: " + movie_title);
         System.out.println("Seats: " + seats);
         System.out.println(show_date);
         System.out.println("Payload processed successfully."); // Log success
+
+        session.invalidate();
         return modelAndView;
     }
 }

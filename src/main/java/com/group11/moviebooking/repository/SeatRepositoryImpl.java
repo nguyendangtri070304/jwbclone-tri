@@ -38,7 +38,6 @@ public class SeatRepositoryImpl extends BasicImpl implements SeatRepository{
         sql.append("WHERE r.room_id = ? ");
         sql.append("AND st.show_date = ? ");
         sql.append("AND st.start_time = ? ");
-        sql.append("AND st.end_time = ? ");
         sql.append("AND bs.seat_id = s.seat_id;");
 
         try {
@@ -46,7 +45,6 @@ public class SeatRepositoryImpl extends BasicImpl implements SeatRepository{
             statement.setInt(1, room_id);
             statement.setString(2, show_date);
             statement.setString(3, start_time);
-            statement.setString(4, end_time);
             ResultSet rs = statement .executeQuery();
             while(rs.next()){
                 SeatEntity seat = new SeatEntity();

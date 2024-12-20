@@ -47,7 +47,7 @@ public class SeatController {
             e.printStackTrace();
         }
 
-        System.out.print(" JSON seats: " + jsonSoldSeats);
+        System.out.println("JSON seats: " + jsonSoldSeats);
         modelAndView.addObject("room_id", room_id);
         modelAndView.addObject("movie_id", movie_id);
         modelAndView.addObject("showtime_id", showtime.getShowtime_id());
@@ -67,9 +67,9 @@ public class SeatController {
         session.setAttribute("show_date", showtime.getShow_date());
 
 
-        System.out.print("movie id: " + movie_id);
-        System.out.print("room id: " + room_id);
-        System.out.print("start time: " + start_time);
+        System.out.println("movie id: " + movie_id);
+        System.out.print(" room id: " + room_id);
+        System.out.print(" start time: " + start_time);
         return modelAndView;
     }
 

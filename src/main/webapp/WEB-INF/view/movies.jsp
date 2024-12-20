@@ -340,7 +340,7 @@
 												<p>${movie.movie_studio}</p>
 											</div>
 											<div class="bookbtn">
-												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking?movie_id=${movie.movie_id}';">Book</button>
 											</div>
 										</div>
 									</div>
@@ -400,7 +400,7 @@
 												<p>${movie.movie_studio}</p>
 											</div>
 											<div class="bookbtn">
-												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking?movie_id=${movie.movie_id}';">Book</button>
 											</div>
 										</div>
 									</div>
@@ -459,7 +459,7 @@
 												<p>${movie.movie_studio}</p>
 											</div>
 											<div class="bookbtn">
-												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking';">Book</button>
+												<button type="button" class="btn btn-success" onclick="location.href='/ticket-booking?movie_id=${movie.movie_id}';">Book</button>
 											</div>
 										</div>
 									</div>
